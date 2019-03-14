@@ -1,28 +1,40 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, { Component, Fragment } from 'react';
+import { Switch, Route, withRouter } from 'react-router-dom'
+import Login from './Containers/Login'
+import Client from './Containers/Client'
+import HeadQuarters from './Containers/HeadQuarters'
 import './App.css';
 
+
 class App extends Component {
+
+	state = {
+		clients:[]
+	}
+
+componentDidMount(){
+	fetch('http://localhost:3000/api/v1/users').then(res=>res.json()).then(res=>this.setState({
+		clients:res[0]['clients']
+	}))
+}
+
+
   render() {
+  	// console.log(this.state)
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Fragment>
+      <Switch>
+      <Route exact path="/" component={Login}/>
+      <Route path="/headquarters" render={()=><HeadQuarters clients={this.state.clients}/>}/>
+      <Route path="/client" component={Client}/>
+
+
+      </Switch>
+      
+      </Fragment>
     );
   }
 }
 
-export default App;
+export default withRouter(App);
