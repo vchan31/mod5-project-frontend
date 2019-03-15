@@ -8,12 +8,14 @@ const ClientContainer = props => {
 
 function mapClients(){
 	return props.clients.map(function(client){
-		return <ClientCard name={client.name} email={client.email} number={client.number} key={client.id}/>
+		return <ClientCard name={client.name} email={client.email} number={client.number} key={client.id} id={client.id}
+		handleSelectClient={props.handleSelectClient}
+		/>
 	})
 }
 return (
 		<div>
-			{props ? mapClients() : <h1>Loading!</h1>}
+			{mapClients()}
 		</div>
 
 	)

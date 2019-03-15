@@ -4,37 +4,57 @@ import Login from './Containers/Login'
 import Client from './Containers/Client'
 import HeadQuarters from './Containers/HeadQuarters'
 import './App.css';
+import { connect } from 'react-redux'
 
 
 class App extends Component {
+	// state = {
+	// 	clients:[],
+	// 	selected_client: null
+	// }
 
-	state = {
-		clients:[]
-	}
+// componentDidMount(){
+// 	fetch('http://localhost:3000/api/v1/users').then(res=>res.json()).then(res=>this.setState({
+// 		clients:res[0]['clients']
+// 	}))
+// }
 
-componentDidMount(){
-	fetch('http://localhost:3000/api/v1/users').then(res=>res.json()).then(res=>this.setState({
-		clients:res[0]['clients']
-	}))
-}
-
-
+// handleSelectClient = (clientId) => {
+// 	console.log(clientId)
+// }
   render() {
-  	// console.log(this.state)
-
+  	// console.log('App props: ',this.props)
     return (
       <Fragment>
       <Switch>
-      <Route exact path="/" component={Login}/>
-      <Route path="/headquarters" render={()=><HeadQuarters clients={this.state.clients}/>}/>
-      <Route path="/client" component={Client}/>
 
+      <Route 
+      	path="/client/:id" 
+      	render={(routerProps)=>{
+      		// console.log(routerProps)
+      		return <Client {...routerProps} />
+      	}} 
+      	/>
+      <Route path="/headquarters" render={(routerProps)=><HeadQuarters {...routerProps} clients={this.props.clients} 
+      />}/>
+      <Route path="/" component={Login}/>
 
       </Switch>
       
       </Fragment>
     );
   }
+
 }
 
-export default withRouter(App);
+  function mapStateToProps(state){
+
+  	return {
+  		clients: state.clients,
+  		selectedClient: state.selectedClient
+  	}
+  }
+
+
+
+export default withRouter(connect(mapStateToProps)(App));

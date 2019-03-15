@@ -1,26 +1,45 @@
 import React from 'react';
+import { connect } from 'react-redux'
+import { withRouter, Link } from 'react-router-dom'
 
 
 const ClientCard = props => {
 const {
 	name,
 	email,
-	number
+	number,
+	id
 	} = props
 // console.log(props)
 	return (
-
-		<div className='Client-card'>
-		<img className='resize-image' src='http://localhost:3001/img_avatar3.png' alt='picture'/>
+<div>
+		<div className='Client-card' onClick={()=>{props.handleSelectClient(id)
+			props.history.push(`/client/${props.id}`)
+		}
+		}>
+		<img className='resize-image' src='http://localhost:3001/img_avatar3.png' alt='stop yelling at me react!'/>
 		<div className='container'>
 		<p>{name}</p>
 		<p>{email}</p>
 		<p>{number}</p>
 		</div>
 		</div>
-
+</div>
 	)
 
 }
 
-export default ClientCard
+  function mapDispatchToProps(dispatch){
+
+  	return {
+  		handleSelectClient: (clientId) => {
+  			// this.props.history.push(`/client/${client}`)
+  			dispatch({type: 'SELECT_CLIENT', payload: clientId})
+  			// console.log('called', client)
+  		},
+  		test: () => {console.log('lol wut')}
+  	}
+  }
+
+export default withRouter(connect(null, mapDispatchToProps)(ClientCard))
+// <Link to={`/client/${props.id}`}>About</Link>
