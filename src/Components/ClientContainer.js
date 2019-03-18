@@ -14,7 +14,7 @@ function mapClients(){
 	})
 }
 return (
-		<div>
+		<div className='ui grid'>
 			{mapClients()}
 		</div>
 

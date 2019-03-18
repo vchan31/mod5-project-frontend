@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button, Header, Icon, Image, Modal } from 'semantic-ui-react'
 
 class  CreateClientForm extends Component {
 
@@ -9,21 +10,24 @@ state = {
 	number: ""
 }
 
-handleSubmit = () => {
-	fetch('http://localhost:3000/api/v1/clients', 
-	{
-		method: 'POST',
-		headers: {
-			"Content-Type": "application/json",
-        	Accept: "application/json"
-		},
-		body: JSON.stringify({
-			name: this.state.name,
-			number: this.state.number,
-			email: this.state.email,
-			user_id: 1
-		})
-	}).then(res=>console.log(res))
+handleSubmit = (e) => {
+	e.preventDefault()
+	console.log('I hit the submit button!')
+
+	// fetch('http://localhost:3000/api/v1/clients', 
+	// {
+	// 	method: 'POST',
+	// 	headers: {
+	// 		"Content-Type": "application/json",
+ //        	Accept: "application/json"
+	// 	},
+	// 	body: JSON.stringify({
+	// 		name: this.state.name,
+	// 		number: this.state.number,
+	// 		email: this.state.email,
+	// 		user_id: 1
+	// 	})
+	// }).then(res=>console.log(res))
 
 }
 
@@ -48,19 +52,64 @@ if (e.target.id === "name") {
 render(){
 
 	return (
-		<div>
-		
-		name: <input onChange={(e)=>this.handleOnChange(e)} type="text" id="name" value={this.state.name}/><br/>
-  		email: <input onChange={(e)=>this.handleOnChange(e)} type="text" id="email" value={this.state.email}/><br/>
-  		number: <input onChange={(e)=>this.handleOnChange(e)} type="text" id="number" value={this.state.number}/><br/>
-  		<button onClick={()=>this.handleSubmit()}>submit</button> <br/>
-		<button>new lead</button>
+	<div>
 
-
+		<form className="ui form" onSubmit={(e)=>this.handleSubmit(e)}>
+		<div className="field">
+		<label>Full Name</label>
+		<input placeholder="Name" onChange={(e)=>this.handleOnChange(e)} type="text" id="name" value={this.state.name}/>
 		</div>
-	)
+		<div className="field">
+		<label>Email</label>
+		<input placeholder="Email" onChange={(e)=>this.handleOnChange(e)} type="text" id="email" value={this.state.email}/>
+		</div>
+		<div className="field">
+		<label>Number</label>
+		<input placeholder="Number" onChange={(e)=>this.handleOnChange(e)} type="text" id="number" value={this.state.number}/>
+		</div>
+		<div className="field">
+		<div className="ui checkbox">
+		<input type="checkbox" className="hidden" readOnly="" tabIndex="0"/>
+		<label>I agree to the Terms and Conditions</label></div>
+		</div>
+		<button type="submit" className="ui button" >Submit</button>
+		</form>
+		
+
+			<Modal trigger={<Button>Sample Modal</Button>}>
+		    <Modal.Header>Profile Picture</Modal.Header>
+		    <Modal.Content image>
+		      <Image wrapped size='medium' src='http://localhost:3002/img_avatar3.png' />
+		      <Modal.Description>
+		        <Header>Modal Header</Header>
+		        <p>This is an example of expanded content that will cause the modal's dimmer to scroll</p>
+		        <Image src='http://localhost:3002/img_avatar3.png' />
+		        <Image src='http://localhost:3002/img_avatar3.png' />
+		        <Image src='http://localhost:3002/img_avatar3.png' />
+		        <Image src='http://localhost:3002/img_avatar3.png' />
+		        <Image src='http://localhost:3002/img_avatar3.png' />
+		        <Image src='http://localhost:3002/img_avatar3.png' />
+		        <Image src='http://localhost:3002/img_avatar3.png' />
+		        <Image src='http://localhost:3002/img_avatar3.png' />
+		      </Modal.Description>
+		    </Modal.Content>
+		    <Modal.Actions>
+		      <Button primary>
+		        Proceed <Icon name='right chevron' />
+		      </Button>
+		    </Modal.Actions>
+  </Modal>
+
+
+	</div>
+)
 
 }
 }
 
 export default CreateClientForm
+		// name: <input onChange={(e)=>this.handleOnChange(e)} type="text" id="name" value={this.state.name}/><br/>
+  // 		email: <input onChange={(e)=>this.handleOnChange(e)} type="text" id="email" value={this.state.email}/><br/>
+  // 		number: <input onChange={(e)=>this.handleOnChange(e)} type="text" id="number" value={this.state.number}/><br/>
+  // 		<button onClick={()=>this.handleSubmit()}>submit</button> <br/>
+		// <button>new lead</button>

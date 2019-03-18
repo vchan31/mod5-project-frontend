@@ -7,7 +7,7 @@ const defaultState = {
 }
 
 function reducer(state=defaultState, action){
-	console.log('I am in the reducer, console logging action: ', action.payload)
+	// console.log('I am in the reducer, console logging action: ', action.payload)
 	
 	switch(action.type){
 		case 'SELECT_CLIENT': 

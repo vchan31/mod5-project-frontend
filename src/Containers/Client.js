@@ -9,9 +9,9 @@ let targetClient = props.clients.find(function(client){
 	return client.id === props.selectedClient
 })
 
-console.log(targetClient)
+// console.log(targetClient)
 
-console.log('Client props:', props)
+// console.log('Client props:', props)
 
 	return (
 		<div>
@@ -22,8 +22,10 @@ console.log('Client props:', props)
 				<p>{props.selectedClient ? targetClient.email : 'no client selected!'}</p>
 
 		<p>current stage</p>
+<button className="ui button">Update</button>
+<button className="ui button">Save Changes</button>
 
-		<p>NEED A COMPONENT THAT HAS THE SCRUM BOARD</p>
+		<ScrumBoard />
 
 		<p>current action:</p>
 		<p>next action</p>

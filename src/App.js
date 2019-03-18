@@ -37,7 +37,7 @@ class App extends Component {
       	/>
       <Route path="/headquarters" render={(routerProps)=><HeadQuarters {...routerProps} clients={this.props.clients} 
       />}/>
-      <Route path="/" component={Login}/>
+      <Route exact path="/" component={Login}/>
 
       </Switch>
       
