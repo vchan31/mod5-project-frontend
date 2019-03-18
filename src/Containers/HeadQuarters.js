@@ -13,7 +13,7 @@ const HeadQuarters = props => {
 		<CreateClientForm />
 		<br/>
 		<SideBar />
-		<ClientContainer clients={props.clients}/>
+		<ClientContainer />
 
 		</div>
 	)

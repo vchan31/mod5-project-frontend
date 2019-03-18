@@ -1,5 +1,6 @@
 import React from 'react';
 import ClientCard from './ClientCard'
+import { connect } from 'react-redux'
 
 
 
@@ -9,7 +10,6 @@ const ClientContainer = props => {
 function mapClients(){
 	return props.clients.map(function(client){
 		return <ClientCard name={client.name} email={client.email} number={client.number} key={client.id} id={client.id}
-		handleSelectClient={props.handleSelectClient}
 		/>
 	})
 }
@@ -22,4 +22,12 @@ return (
 
 }
 
-export default ClientContainer
+ function mapStateToProps(state){
+
+  	return {
+  		clients: state.clients
+  	}
+  }
+
+
+export default connect(mapStateToProps)(ClientContainer)

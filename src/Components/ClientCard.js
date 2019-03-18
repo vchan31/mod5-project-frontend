@@ -36,8 +36,7 @@ const {
   			// this.props.history.push(`/client/${client}`)
   			dispatch({type: 'SELECT_CLIENT', payload: clientId})
   			// console.log('called', client)
-  		},
-  		test: () => {console.log('lol wut')}
+  		}
   	}
   }
 

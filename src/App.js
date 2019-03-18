@@ -24,23 +24,23 @@ class App extends Component {
 // }
   render() {
   	// console.log('App props: ',this.props)
+     
     return (
       <Fragment>
       <Switch>
 
       <Route 
-      	path="/client/:id" 
-      	render={(routerProps)=>{
-      		// console.log(routerProps)
-      		return <Client {...routerProps} />
-      	}} 
-      	/>
+        path="/client/:id" 
+        render={(routerProps)=>{
+          // console.log(routerProps)
+          return <Client {...routerProps} />
+        }} 
+        />
       <Route path="/headquarters" render={(routerProps)=><HeadQuarters {...routerProps} clients={this.props.clients} 
       />}/>
       <Route exact path="/" component={Login}/>
 
       </Switch>
-      
       </Fragment>
     );
   }
@@ -55,6 +55,7 @@ class App extends Component {
   	}
   }
 
+  
 
 
 export default withRouter(connect(mapStateToProps)(App));

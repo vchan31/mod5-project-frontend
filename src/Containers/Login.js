@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import logo from '../logo.svg';
 import '../App.css';
 import { withRouter } from "react-router-dom";
-
+import ClientAdapter from '../apis/ClientAdapter'
+import { connect } from 'react-redux'
 
 class Login extends Component {
 
 goToHeadQuarters = () => {
+  ClientAdapter.getClients().then(res=>this.props.fetchClients(res))
   this.props.history.push("/headquarters")
 }
 
@@ -32,7 +34,11 @@ goToHeadQuarters = () => {
           <input type="password" name="password" placeholder="Password" />
           <label ></label>
         </div>
-        <input type="submit" value="Login" onClick={()=>{this.goToHeadQuarters()}}/>
+        <input type="submit" value="Login" onClick={()=>{
+
+          // ClientAdapter.getClients().then(res=>props.fetchClients(res))
+          this.goToHeadQuarters()}
+        }/>
         </form>
 </div>
       </div>
@@ -41,4 +47,13 @@ goToHeadQuarters = () => {
   }
 }
 
-export default withRouter(Login);
+function mapDispatchToProps(dispatch){
+
+  return {
+    fetchClients: (res) =>{
+  dispatch({type:'FETCH_CLIENTS', payload: res})
+    }
+  } 
+}
+
+export default withRouter(connect(null,mapDispatchToProps)(Login));
