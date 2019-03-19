@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import ScrumBoard from '../Components/ScrumBoard'
 import UpdateClientForm from '../Components/updateClientForm'
 import Prequalification from '../Components/Prequalification'
+import ClientInfo from '../Components/ClientInfo'
+import DndTest from '../Dnd/DndTest'
 
 
 class Client extends Component {
@@ -21,8 +23,8 @@ componentDidMount(){
 
 		if (res.budget == null && res.financing == null) {this.setState({status: 'OnBoarding', client: res})
 		}
-		// else if () {
-		// }
+		else if (res.budget != null && res.financing != null) {this.setState({status: 'Showings', client: res})
+		}
 	}
 	)
 
@@ -50,19 +52,19 @@ handleSubmit = (e) => {
 	e.preventDefault()
 
 	console.log('I hit the submit button!')
-	// fetch(`http://localhost:3000/api/v1/clients/${this.props.match.params.id}`, 
-	// {
-	// 	method: 'PATCH',
-	// 	headers: {
-	// 		"Content-Type": "application/json",
- //        	Accept: "application/json"
-	// 	},
-	// 	body: JSON.stringify({
-	// 		name: this.state.name,
-	// 		number: this.state.number,
-	// 		email: this.state.email
-	// 	})
-	// }).then(res=>console.log(res))
+	fetch(`http://localhost:3000/api/v1/clients/${this.props.match.params.id}`, 
+	{
+		method: 'PATCH',
+		headers: {
+			"Content-Type": "application/json",
+        	Accept: "application/json"
+		},
+		body: JSON.stringify({
+			name: this.state.name,
+			number: this.state.number,
+			email: this.state.email
+		})
+	}).then(res=>console.log(res))
 
 }
 
@@ -75,13 +77,32 @@ handleEditClick = () => {
 	})
 }
 
+currentAction = () => {
+
+	if (this.state.status === 'OnBoarding') {return 'Schedule an appointment to prequalify client as soon as possible'
+	}
+
+	else if (this.state.status === 'Showings'){return 'Keep showing and follow up after each showing!'}
+}
+
+nextAction = () => {
+	if (this.state.status === 'OnBoarding') {return 'Showings'
+	}
+
+	else if (this.state.status === 'Showings'){return 'Seller negotiations'}
+}
+
+percentageToClosing = () => {
+
+}
+
 
 prequalDone = () => {
 
 }
 
 render() {
-// console.log('Client props:', this.props)
+// console.log('Client props:', this.props.match.params.id)
 // console.log(this.state)
 	return (
 		<div>
@@ -96,12 +117,26 @@ render() {
 
 <button className="ui button" onClick={this.handleEditClick}>Edit</button>
 <button className="ui button">Save Changes</button>
-
+<button className="ui button">Show Analysis</button>
+<br/>
+<br/>
+<br/>
+<br/>
 		<ScrumBoard />
+<br/>
+<br/>
+<br/>
+<br/>
+		<p>current suggested action(s): <b>{this.state.client ? this.currentAction() : 'loading'}</b></p>
+		<p>next action: <b>{this.state.client ? this.nextAction() : 'loading'}</b> </p>
 
-		<p>current action:</p>
-		<p>next action</p>
-		<p>suggestions??</p>
+<br/>
+<br/>
+<br/>
+<br/>
+
+{this.state.client ? <ClientInfo info={this.state.client}/> : "loading"}
+
 
 <br/>
 <br/>
@@ -123,7 +158,7 @@ render() {
 <br/>
 <br/>
 <br/>
-<button className="ui button">prequal Done</button>
+<button className="ui button">prequal</button>
 
 
 	</div>
