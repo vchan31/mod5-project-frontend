@@ -7,7 +7,7 @@ render(){
 // console.log(this.props)
 	return (
 	<div>
-
+		<h1>Edit</h1>
 		<form className="ui form" onSubmit={(e)=>this.props.handleSubmit(e)}>
 		<div className="field">
 		<label>Full Name</label>

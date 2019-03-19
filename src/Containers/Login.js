@@ -51,6 +51,7 @@ function mapDispatchToProps(dispatch){
 
   return {
     fetchClients: (res) =>{
+      console.log('Dispatching now!')
   dispatch({type:'FETCH_CLIENTS', payload: res})
     }
   } 

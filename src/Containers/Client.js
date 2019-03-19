@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import ScrumBoard from '../Components/ScrumBoard'
 import UpdateClientForm from '../Components/updateClientForm'
+import Prequalification from '../Components/Prequalification'
 
 
 class Client extends Component {
@@ -9,9 +10,23 @@ class Client extends Component {
 	state = {
 	name: "",
 	email: "",
-	number: ""
+	number: "",
+	status: null,
+	client: null
 }
 
+componentDidMount(){
+	fetch(`http://localhost:3000/api/v1/clients/${this.props.match.params.id}`).then(res=>res.json()).then(
+		res=>{
+
+		if (res.budget == null && res.financing == null) {this.setState({status: 'OnBoarding', client: res})
+		}
+		// else if () {
+		// }
+	}
+	)
+
+}
 
 handleOnChange = (e) => {
 if (e.target.id === "name") {
@@ -52,43 +67,32 @@ handleSubmit = (e) => {
 }
 
 handleEditClick = () => {
-const targetClient = this.props.clients.find((client)=>{
-	return client.id === parseInt(this.props.match.params.id)
-})
+
 	this.setState({
-		name: targetClient.name,
-		email: targetClient.email,
-		number: targetClient.number
+		name: this.state.client.name,
+		email: this.state.client.email,
+		number: this.state.client.number
 	})
 }
 
-currentStage = () => {
-	const targetClient = this.props.clients.find((client)=>{
-	return client.id === parseInt(this.props.match.params.id)
-})
-	if (targetClient.budget == null && targetClient.financing == null) {return 'OnBoarding'}
+
+prequalDone = () => {
+
 }
 
 render() {
-// console.log(targetClient)
-
-// console.log('Client props:', props)
-// console.log('props from react route: ', props.match.params.id)
-
-const targetClient = this.props.clients.find((client)=>{
-	return client.id === parseInt(this.props.match.params.id)
-})
-
-
+// console.log('Client props:', this.props)
+// console.log(this.state)
 	return (
 		<div>
 		<h1>Client Page</h1>
 
-		<p>{targetClient ? targetClient.name : 'no client selected!' }</p>
-		<p>{targetClient ? targetClient.number : 'no client selected!'}</p>
-				<p>{targetClient ? targetClient.email : 'no client selected!'}</p>
+		<p>{this.state.client ? this.state.client.name : 'no client selected!' }</p>
+		<p>{this.state.client ? this.state.client.number : 'no client selected!'}</p>
+				<p>{this.state.client ? this.state.client.email : 'no client selected!'}</p>
 
-		<p>current stage: <b>{this.currentStage()}</b></p>
+		<p>current stage: <b>{this.state.status}</b></p>
+		<p>precentage to closing: </p>
 
 <button className="ui button" onClick={this.handleEditClick}>Edit</button>
 <button className="ui button">Save Changes</button>
@@ -103,9 +107,17 @@ const targetClient = this.props.clients.find((client)=>{
 <br/>
 <br/>
 <br/>
+	{this.state.client ? <UpdateClientForm clientId={this.state.client.id} targetClient={this.state.client} state={this.state}
+	handleSubmit={this.handleSubmit} handleOnChange={this.handleOnChange}/> : null}
+	
 
-	<UpdateClientForm clientId={targetClient.id} targetClient={targetClient} state={this.state}
-	handleSubmit={this.handleSubmit} handleOnChange={this.handleOnChange}/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+<Prequalification />
+
 
 <br/>
 <br/>
