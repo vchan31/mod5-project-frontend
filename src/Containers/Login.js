@@ -4,6 +4,7 @@ import '../App.css';
 import { withRouter } from "react-router-dom";
 import ClientAdapter from '../apis/ClientAdapter'
 import { connect } from 'react-redux'
+import CreateNewUserForm from '../Components/createNewUserForm'
 
 class Login extends Component {
 
@@ -13,11 +14,14 @@ goToHeadQuarters = () => {
 }
 
 
+
+
+
   render() {
     
     return (
         <div>
-        <input type='submit' value='New User' />
+        <CreateNewUserForm />
       <div className="App">
 
         <header className="App-header">
@@ -35,11 +39,12 @@ goToHeadQuarters = () => {
           <input type="password" name="password" placeholder="Password" />
           <label ></label>
         </div>
-        <input type="submit" value="Login" onClick={()=>{
+        <br/>
+        <button type="submit" className = 'ui primary button' onClick={()=>{
 
           // ClientAdapter.getClients().then(res=>props.fetchClients(res))
           this.goToHeadQuarters()}
-        }/>
+        }> Login </button>
         </form>
 </div>
       </div>

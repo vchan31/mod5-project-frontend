@@ -6,6 +6,7 @@ import ClientInfo from '../Components/ClientInfo'
 import DndTest from '../Dnd/DndTest'
 
 
+
 class Client extends Component {
 
 	state = {
@@ -67,7 +68,7 @@ handleSubmit = (e) => {
 }
 
 handleScrumSave = () => {
-console.log('saved')
+console.log('saved button clicked')
 if (this.state.status2 === null){alert('No changes to be made!!')}
 	else {
 fetch(`http://localhost:3000/api/v1/clients/${this.props.match.params.id}`, 
@@ -189,6 +190,7 @@ prequalDone = () => {
 }
 
 dropOnChange = (drId) => {
+
 	if (drId === 'dr1'){
 		this.setState({status2:"OnBoarding"})
 	}
@@ -215,6 +217,8 @@ dropOnChange = (drId) => {
 	}
 }
 
+
+
 render() {
 // console.log('Client props:', this.props.match.params.id)
 	return (
@@ -228,17 +232,21 @@ render() {
 		<p>current stage: <b>{this.currentStage()}</b></p>
 		<p>precentage to closing: <b>{this.percentageToClosing()}</b></p>
 
-<button className="ui button" onClick={this.handleEditClick}>Edit</button>
-<button className="ui button">Show Analysis</button>
+{this.state.client ? <ClientInfo info={this.state.client}/> : "loading"}
+
 <br/>
 <br/>
 <br/>
 <br/>
-		
-		<DndTest status={this.state.status} dropOnChange={this.dropOnChange}/>
+		<div>
+	<DndTest status={this.state.status} dropOnChange={this.dropOnChange}/>
 		<button className="ui button" onClick={this.handleScrumSave}>Save</button>
+		</div>
+
 <br/>
 <br/>
+	{this.state.client ? <UpdateClientForm clientId={this.state.client.id} targetClient={this.state.client} state={this.state}
+	handleSubmit={this.handleSubmit} handleOnChange={this.handleOnChange} handleEditClick={this.handleEditClick}/> : null}
 <br/>
 <br/>
 		<p>current suggested action(s): <b>{this.state.client ? this.currentAction() : 'loading'}</b></p>
@@ -249,15 +257,9 @@ render() {
 <br/>
 <br/>
 
-{this.state.client ? <ClientInfo info={this.state.client}/> : "loading"}
 
 
-<br/>
-<br/>
-<br/>
-<br/>
-	{this.state.client ? <UpdateClientForm clientId={this.state.client.id} targetClient={this.state.client} state={this.state}
-	handleSubmit={this.handleSubmit} handleOnChange={this.handleOnChange}/> : null}
+
 	
 
 <br/>

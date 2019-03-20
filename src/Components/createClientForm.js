@@ -14,21 +14,21 @@ handleSubmit = (e) => {
 	e.preventDefault()
 	console.log('I hit the submit button!')
 
-	fetch('http://localhost:3000/api/v1/clients', 
-	{
-		method: 'POST',
-		headers: {
-			"Content-Type": "application/json",
-        	Accept: "application/json"
-		},
-		body: JSON.stringify({
-			name: this.state.name,
-			number: this.state.number,
-			email: this.state.email,
-			user_id: 1,
-			status: 'OnBoarding'
-		})
-	}).then(res=>console.log(res))
+	// fetch('http://localhost:3000/api/v1/clients', 
+	// {
+	// 	method: 'POST',
+	// 	headers: {
+	// 		"Content-Type": "application/json",
+ //        	Accept: "application/json"
+	// 	},
+	// 	body: JSON.stringify({
+	// 		name: this.state.name,
+	// 		number: this.state.number,
+	// 		email: this.state.email,
+	// 		user_id: 1,
+	// 		status: 'OnBoarding'
+	// 	})
+	// }).then(res=>console.log(res))
 
 }
 
@@ -55,7 +55,15 @@ render(){
 	return (
 	<div>
 
-		<form className="ui form" onSubmit={(e)=>this.handleSubmit(e)}>
+			<Modal trigger={<Button>New Client</Button>}>
+
+		    <Modal.Header>Profile Picture</Modal.Header>
+		    <Modal.Content image>
+		      <Image wrapped size='medium' src='http://localhost:3002/img_avatar3.png' />
+		      <Modal.Description>
+		        <Header>Modal Header</Header>
+		        <p>This is an example of expanded content that will cause the modal's dimmer to scroll</p>
+		        <form className="ui form" onSubmit={(e)=>this.handleSubmit(e)}>
 		<div className="field">
 		<label>Full Name</label>
 		<input placeholder="Name" onChange={(e)=>this.handleOnChange(e)} type="text" id="name" value={this.state.name}/>
@@ -73,31 +81,12 @@ render(){
 		<input type="checkbox" className="hidden" readOnly="" tabIndex="0"/>
 		<label>I agree to the Terms and Conditions</label></div>
 		</div>
-		<button type="submit" className="ui button" >Submit</button>
+		<button type="submit" className="ui primary button" >Submit</button>
 		</form>
-		
-
-			<Modal trigger={<Button>Sample Modal</Button>}>
-		    <Modal.Header>Profile Picture</Modal.Header>
-		    <Modal.Content image>
-		      <Image wrapped size='medium' src='http://localhost:3002/img_avatar3.png' />
-		      <Modal.Description>
-		        <Header>Modal Header</Header>
-		        <p>This is an example of expanded content that will cause the modal's dimmer to scroll</p>
-		        <Image src='http://localhost:3002/img_avatar3.png' />
-		        <Image src='http://localhost:3002/img_avatar3.png' />
-		        <Image src='http://localhost:3002/img_avatar3.png' />
-		        <Image src='http://localhost:3002/img_avatar3.png' />
-		        <Image src='http://localhost:3002/img_avatar3.png' />
-		        <Image src='http://localhost:3002/img_avatar3.png' />
-		        <Image src='http://localhost:3002/img_avatar3.png' />
-		        <Image src='http://localhost:3002/img_avatar3.png' />
 		      </Modal.Description>
 		    </Modal.Content>
 		    <Modal.Actions>
-		      <Button primary>
-		        Proceed <Icon name='right chevron' />
-		      </Button>
+		      
 		    </Modal.Actions>
   </Modal>
 
