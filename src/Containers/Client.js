@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import ScrumBoard from '../Components/ScrumBoard'
 import UpdateClientForm from '../Components/updateClientForm'
 import Prequalification from '../Components/Prequalification'
 import ClientInfo from '../Components/ClientInfo'
@@ -101,6 +100,12 @@ prequalDone = () => {
 
 }
 
+dropOnChange = (drId) => {
+	if (drId === 'dr1'){console.log('dr1')}
+	else if (drId=== 'dr2'){console.log('dr2')}
+
+}
+
 render() {
 // console.log('Client props:', this.props.match.params.id)
 // console.log(this.state)
@@ -110,7 +115,7 @@ render() {
 
 		<p>{this.state.client ? this.state.client.name : 'no client selected!' }</p>
 		<p>{this.state.client ? this.state.client.number : 'no client selected!'}</p>
-				<p>{this.state.client ? this.state.client.email : 'no client selected!'}</p>
+		<p>{this.state.client ? this.state.client.email : 'no client selected!'}</p>
 
 		<p>current stage: <b>{this.state.status}</b></p>
 		<p>precentage to closing: </p>
@@ -122,7 +127,8 @@ render() {
 <br/>
 <br/>
 <br/>
-		<ScrumBoard />
+		
+		<DndTest status={this.state.status} dropOnChange={this.dropOnChange}/>
 <br/>
 <br/>
 <br/>

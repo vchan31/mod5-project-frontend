@@ -19,23 +19,45 @@ const Item = styled.div`
 
 const droppableStyle = {
 	backgroundColor: `#555`,
-	width: '250px',
-	height: '400px',
+	width: '200px',
+	height: '150px',
 	margin: '32px'
 };
 
 export default class DndTest extends React.Component {
 	render(){
+	// console.log('in drag n drop test: ', this.props)
 
 		return (
 			<Wrapper>
-				<Droppable id='dr1' style={droppableStyle}>
-				<Draggable id='item1' style={{margin: '8px'}}><Item>SomeText1</Item></Draggable>
-				<Draggable id='item2'style={{margin: '8px'}}> <Item>SomeText2</Item></Draggable>
+				<Droppable dropOnChange={this.props.dropOnChange} id='dr1' style={droppableStyle}><h3><font color='white'> OnBoarding</font></h3>
+				{this.props.status === 'OnBoarding' ? <Draggable id='item1' style={{margin: '8px'}}><Item>Current Stage</Item></Draggable> : null  }
 				</Droppable>
 
-				<Droppable id='dr2' style={droppableStyle}>
+				<Droppable dropOnChange={this.props.dropOnChange} id='dr2' style={droppableStyle}><h3><font color='white'> Showings</font></h3>
+				{this.props.status === 'Showings' ? <Draggable id='item1' style={{margin: '8px'}}><Item>Current Stage</Item></Draggable> : null  }
 				</Droppable>
+
+				<Droppable dropOnChange={this.props.dropOnChange} id='dr3' style={droppableStyle}><h3><font color='white'> Negotiations</font></h3>
+				</Droppable>
+
+				<Droppable dropOnChange={this.props.dropOnChange} id='dr4' style={droppableStyle}><h3><font color='white'> Offer</font></h3>
+				</Droppable>
+
+				<Droppable dropOnChange={this.props.dropOnChange} id='dr5' style={droppableStyle}><h3><font color='white'> Contract Negotiations</font></h3>
+				</Droppable>
+
+
+				<Droppable dropOnChange={this.props.dropOnChange} id='dr6' style={droppableStyle}><h3><font color='white'> Contract</font></h3>
+				</Droppable>
+
+				<Droppable dropOnChange={this.props.dropOnChange} id='dr7' style={droppableStyle}><h3><font color='white'> Board Package</font></h3>
+				</Droppable>
+
+				<Droppable dropOnChange={this.props.dropOnChange} id='dr8' style={droppableStyle}><h3><font color='white'> Closing!</font></h3>
+				</Droppable>
+
+			
 
 			</Wrapper>
 			);

@@ -6,6 +6,7 @@ export default class Droppable extends React.Component{
 
 	drop = (e) => {
 		e.preventDefault();
+		this.props.dropOnChange(e.target.id)
 		const data = e.dataTransfer.getData('transfer');
 		e.target.appendChild(document.getElementById(data));
 	}
@@ -17,6 +18,7 @@ export default class Droppable extends React.Component{
 
 	render(){
 
+	// console.log(this.props)
 		return(
 
 			<div id={this.props.id} onDrop={this.drop} onDragOver={this.allowDrop} style={this.props.style}>
