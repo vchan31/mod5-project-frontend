@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 
 
 const ClientContainer = props => {
-console.log(props)
 
 function mapClients(){
 	return props.clients.map(function(client){

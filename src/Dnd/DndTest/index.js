@@ -26,7 +26,7 @@ const droppableStyle = {
 
 export default class DndTest extends React.Component {
 	render(){
-	console.log('in drag n drop test: ', this.props)
+	// console.log('in drag n drop test: ', this.props)
 
 		return (
 			<Wrapper>
@@ -39,22 +39,34 @@ export default class DndTest extends React.Component {
 				</Droppable>
 
 				<Droppable dropOnChange={this.props.dropOnChange} id='dr3' style={droppableStyle}><h3><font color='white'> Negotiations</font></h3>
+				{this.props.status === 'Negotiations' ? <Draggable id='item1' style={{margin: '8px'}}><Item>Current Stage</Item></Draggable> : null  }
+
 				</Droppable>
 
 				<Droppable dropOnChange={this.props.dropOnChange} id='dr4' style={droppableStyle}><h3><font color='white'> Accepted Offer</font></h3>
+				{this.props.status === 'Accepted Offer' ? <Draggable id='item1' style={{margin: '8px'}}><Item>Current Stage</Item></Draggable> : null  }
+			
 				</Droppable>
 
 				<Droppable dropOnChange={this.props.dropOnChange} id='dr5' style={droppableStyle}><h3><font color='white'> Contract Negotiations</font></h3>
+				{this.props.status === 'Contract Negotiations' ? <Draggable id='item1' style={{margin: '8px'}}><Item>Current Stage</Item></Draggable> : null  }
+
 				</Droppable>
 
 
-				<Droppable dropOnChange={this.props.dropOnChange} id='dr6' style={droppableStyle}><h3><font color='white'> Contract</font></h3>
+				<Droppable dropOnChange={this.props.dropOnChange} id='dr6' style={droppableStyle}><h3><font color='white'> Signed Contract</font></h3>
+				{this.props.status === 'Signed Contract' ? <Draggable id='item1' style={{margin: '8px'}}><Item>Current Stage</Item></Draggable> : null  }
+
 				</Droppable>
 
 				<Droppable dropOnChange={this.props.dropOnChange} id='dr7' style={droppableStyle}><h3><font color='white'> Board Package</font></h3>
+				{this.props.status === 'Board Package' ? <Draggable id='item1' style={{margin: '8px'}}><Item>Current Stage</Item></Draggable> : null  }
+
 				</Droppable>
 
 				<Droppable dropOnChange={this.props.dropOnChange} id='dr8' style={droppableStyle}><h3><font color='white'> Closing!</font></h3>
+				{this.props.status === 'Closing' ? <Draggable id='item1' style={{margin: '8px'}}><Item>Current Stage</Item></Draggable> : null  }
+
 				</Droppable>
 
 			

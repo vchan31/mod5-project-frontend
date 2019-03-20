@@ -20,11 +20,9 @@ class Client extends Component {
 componentDidMount(){
 	fetch(`http://localhost:3000/api/v1/clients/${this.props.match.params.id}`).then(res=>res.json()).then(
 		res=>{
-
-		if (res.budget == null && res.financing == null) {this.setState({status: 'OnBoarding', client: res})
-		}
-		else if (res.budget != null && res.financing != null) {this.setState({status: 'Showings', client: res})
-		}
+		this.setState({status: res.status, client: res})
+		
+		
 	}
 	)
 
@@ -68,6 +66,25 @@ handleSubmit = (e) => {
 
 }
 
+handleScrumSave = () => {
+console.log('saved')
+if (this.state.status2 === null){alert('No changes to be made!!')}
+	else {
+fetch(`http://localhost:3000/api/v1/clients/${this.props.match.params.id}`, 
+	{
+		method: 'PATCH',
+		headers: {
+			"Content-Type": "application/json",
+        	Accept: "application/json"
+		},
+		body: JSON.stringify({
+			status: this.state.status2,	
+		})
+	}).then(res=>{console.log(res)
+		alert('Changes Saved!')
+	})
+}}
+
 handleEditClick = () => {
 
 	this.setState({
@@ -78,18 +95,52 @@ handleEditClick = () => {
 }
 
 currentAction = () => {
+	if(this.state.status2 === null){
 
-	if (this.state.status === 'OnBoarding') {return 'Schedule an appointment to prequalify client as soon as possible'
+		if (this.state.status === 'OnBoarding') {return 'Schedule an appointment to prequalify client as soon as possible'}
+		else if (this.state.status === 'Showings'){return 'Keep showing and follow up after each showing!'}
+		else if (this.state.status === 'Negotiations'){return 'Do a Comparable of the unit to find the best starting offering price, and follow up with the listing agent; keep negotiating until an accepted offer!'}
+		else if (this.state.status === 'Accepted Offer'){return 'Make sure buyer starts the mortgage process , follow up to have a contract out from the sellers attorney,'}
+		else if (this.state.status === 'Contract Negotiations'){return 'start gathering the buildings financials, board package and mortgage requirements'}
+		else if (this.state.status === 'Signed Contract'){return 'Start board package with client and make sure mortgage process in under way'}
+		else if (this.state.status === 'Board Package'){return 'Gather all the paper work; prep client for interview if applicable; schedule an appraisal if financing; and schedule a walkthrough with seller agent/seller.'}
+		else if (this.state.status === 'Closing'){return 'Prepare client the day! and do not forget your fee for service invoice!'}
 	}
 
-	else if (this.state.status === 'Showings'){return 'Keep showing and follow up after each showing!'}
+	else if (this.state.status2==="OnBoarding"){return 'Schedule an appointment to prequalify client as soon as possible'}
+	else if (this.state.status2==="Showings"){return 'Keep showing and follow up after each showing!'}
+	else if (this.state.status2 === 'Negotiations'){return 'Do a Comparable of the unit to find the best starting offering price, and follow up with the listing agent; keep negotiating until an accepted offer!'}
+	else if (this.state.status2 === 'Accepted Offer'){return 'Make sure buyer starts the mortgage process , follow up to have a contract out from the sellers attorney,'}
+	else if (this.state.status2 === 'Contract Negotiations'){return 'start gathering the buildings financials, board package and mortgage requirements'}
+	else if (this.state.status2 === 'Signed Contract'){return 'Start board package with client and make sure mortgage process in under way'}
+	else if (this.state.status2 === 'Board Package'){return 'Gather all the paper work; prep client for interview if applicable; schedule an appraisal if financing; and schedule a walkthrough with seller agent/seller.'}
+	else if (this.state.status2 === 'Closing'){return 'Prepare client the closing and give them a closing gift! and do not forget your fee for service invoice!'}
+
 }
 
 nextAction = () => {
-	if (this.state.status === 'OnBoarding') {return 'Showings'
+	if(this.state.status2 === null){
+
+		if (this.state.status === 'OnBoarding') {return 'Showings'}
+		else if (this.state.status === 'Showings'){return 'Seller negotiations'}
+		else if (this.state.status === 'Negotiations'){return 'Accepted Offer'}
+		else if (this.state.status === 'Accepted Offer'){return 'Contract Negotiations'}
+		else if (this.state.status === 'Contract Negotiations'){return 'Contract Signed'}
+		else if (this.state.status === 'Signed Contract'){return 'Board Package'}
+		else if (this.state.status === 'Board Package'){return 'The Closing'}
+		else if (this.state.status === 'Closing'){return 'Client thank you gift!'}
+
 	}
 
-	else if (this.state.status === 'Showings'){return 'Seller negotiations'}
+	else if (this.state.status2==='OnBoarding'){return 'Showings'}
+	else if (this.state.status2==='Showings'){return 'Seller negotiations'}
+	else if (this.state.status2 === 'Showings'){return 'Seller negotiations'}
+	else if (this.state.status2 === 'Negotiations'){return 'Accepted Offer'}
+	else if (this.state.status2 === 'Accepted Offer'){return 'Contract Negotiations'}
+	else if (this.state.status2 === 'Contract Negotiations'){return 'Contract Signed'}
+	else if (this.state.status2 === 'Signed Contract'){return 'Board Package'}
+	else if (this.state.status2 === 'Board Package'){return 'The Closing'}
+	else if (this.state.status2 === 'Closing'){return 'Client thank you gift!'}
 }
 
 currentStage = () => {
@@ -109,7 +160,27 @@ currentStage = () => {
 }
 
 percentageToClosing = () => {
+if(this.state.status2 === null){
 
+		if (this.state.status === 'OnBoarding') {return '12.5%'}
+		else if (this.state.status === 'Showings'){return '25%'}
+		else if (this.state.status === 'Negotiations'){return '37.5%'}
+		else if (this.state.status === 'Accepted Offer'){return '50%'}
+		else if (this.state.status === 'Contract Negotiations'){return '62.5%'}
+		else if (this.state.status === 'Signed Contract'){return '75%'}
+		else if (this.state.status === 'Board Package'){return '87.5%'}
+		else if (this.state.status === 'Closing'){return '100%'}
+
+	}
+
+	else if (this.state.status2==='OnBoarding'){return '12.5%'}
+	else if (this.state.status2==='Showings'){return '25%'}
+	else if (this.state.status2 === 'Negotiations'){return '37.5%'}
+	else if (this.state.status2 === 'Accepted Offer'){return '50%'}
+	else if (this.state.status2 === 'Contract Negotiations'){return '62.5%'}
+	else if (this.state.status2 === 'Signed Contract'){return '75%'}
+	else if (this.state.status2 === 'Board Package'){return '87.5'}
+	else if (this.state.status2 === 'Closing'){return '100%'}
 }
 
 
@@ -142,13 +213,10 @@ dropOnChange = (drId) => {
 	else if (drId=== 'dr8'){
 		this.setState({status2:"Closing"})
 	}
-
-
 }
 
 render() {
 // console.log('Client props:', this.props.match.params.id)
-console.log('in Client Component, state:', this.state)
 	return (
 		<div>
 		<h1>Client Page</h1>
@@ -158,10 +226,9 @@ console.log('in Client Component, state:', this.state)
 		<p>{this.state.client ? this.state.client.email : 'no client selected!'}</p>
 
 		<p>current stage: <b>{this.currentStage()}</b></p>
-		<p>precentage to closing: </p>
+		<p>precentage to closing: <b>{this.percentageToClosing()}</b></p>
 
 <button className="ui button" onClick={this.handleEditClick}>Edit</button>
-<button className="ui button">Save Changes</button>
 <button className="ui button">Show Analysis</button>
 <br/>
 <br/>
@@ -169,6 +236,7 @@ console.log('in Client Component, state:', this.state)
 <br/>
 		
 		<DndTest status={this.state.status} dropOnChange={this.dropOnChange}/>
+		<button className="ui button" onClick={this.handleScrumSave}>Save</button>
 <br/>
 <br/>
 <br/>

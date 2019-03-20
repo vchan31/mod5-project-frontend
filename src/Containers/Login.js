@@ -16,7 +16,8 @@ goToHeadQuarters = () => {
   render() {
     
     return (
-        
+        <div>
+        <input type='submit' value='New User' />
       <div className="App">
 
         <header className="App-header">
@@ -42,7 +43,7 @@ goToHeadQuarters = () => {
         </form>
 </div>
       </div>
-        
+        </div>
     );
   }
 }

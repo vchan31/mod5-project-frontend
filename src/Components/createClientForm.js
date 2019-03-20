@@ -14,20 +14,21 @@ handleSubmit = (e) => {
 	e.preventDefault()
 	console.log('I hit the submit button!')
 
-	// fetch('http://localhost:3000/api/v1/clients', 
-	// {
-	// 	method: 'POST',
-	// 	headers: {
-	// 		"Content-Type": "application/json",
- //        	Accept: "application/json"
-	// 	},
-	// 	body: JSON.stringify({
-	// 		name: this.state.name,
-	// 		number: this.state.number,
-	// 		email: this.state.email,
-	// 		user_id: 1
-	// 	})
-	// }).then(res=>console.log(res))
+	fetch('http://localhost:3000/api/v1/clients', 
+	{
+		method: 'POST',
+		headers: {
+			"Content-Type": "application/json",
+        	Accept: "application/json"
+		},
+		body: JSON.stringify({
+			name: this.state.name,
+			number: this.state.number,
+			email: this.state.email,
+			user_id: 1,
+			status: 'OnBoarding'
+		})
+	}).then(res=>console.log(res))
 
 }
 
