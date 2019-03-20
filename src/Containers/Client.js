@@ -13,6 +13,7 @@ class Client extends Component {
 	email: "",
 	number: "",
 	status: null,
+	status2: null,
 	client: null
 }
 
@@ -28,7 +29,7 @@ componentDidMount(){
 	)
 
 }
-
+// For Edit client form....
 handleOnChange = (e) => {
 if (e.target.id === "name") {
       this.setState({
@@ -51,19 +52,19 @@ handleSubmit = (e) => {
 	e.preventDefault()
 
 	console.log('I hit the submit button!')
-	fetch(`http://localhost:3000/api/v1/clients/${this.props.match.params.id}`, 
-	{
-		method: 'PATCH',
-		headers: {
-			"Content-Type": "application/json",
-        	Accept: "application/json"
-		},
-		body: JSON.stringify({
-			name: this.state.name,
-			number: this.state.number,
-			email: this.state.email
-		})
-	}).then(res=>console.log(res))
+	// fetch(`http://localhost:3000/api/v1/clients/${this.props.match.params.id}`, 
+	// {
+	// 	method: 'PATCH',
+	// 	headers: {
+	// 		"Content-Type": "application/json",
+ //        	Accept: "application/json"
+	// 	},
+	// 	body: JSON.stringify({
+	// 		name: this.state.name,
+	// 		number: this.state.number,
+	// 		email: this.state.email
+	// 	})
+	// }).then(res=>console.log(res))
 
 }
 
@@ -91,6 +92,22 @@ nextAction = () => {
 	else if (this.state.status === 'Showings'){return 'Seller negotiations'}
 }
 
+currentStage = () => {
+	if (this.state.status2 === null && this.state.status === null){return 'loading...'}
+		else if (this.state.status2 === 'OnBoarding'){return 'OnBoarding'}
+		else if (this.state.status2 === 'Showings'){return 'Showings'}
+		else if (this.state.status2 === 'Negotiations'){return 'Negotiations'}
+		else if (this.state.status2 === 'Accepted Offer'){return 'Accepted Offer'}
+		else if (this.state.status2 === 'Contract Negotiations'){return 'Contract Negotiations'}
+		else if (this.state.status2 === 'Signed Contract'){return 'Signed Contract'}
+		else if (this.state.status2 === 'Board Package'){return 'Board Package'}
+		else if (this.state.status2 === 'Closing'){return 'Closing!'}
+
+	
+	
+	else if (this.state.status2 === null){return this.state.status}
+}
+
 percentageToClosing = () => {
 
 }
@@ -101,14 +118,37 @@ prequalDone = () => {
 }
 
 dropOnChange = (drId) => {
-	if (drId === 'dr1'){console.log('dr1')}
-	else if (drId=== 'dr2'){console.log('dr2')}
+	if (drId === 'dr1'){
+		this.setState({status2:"OnBoarding"})
+	}
+	else if (drId=== 'dr2'){
+		this.setState({status2:"Showings"})
+	}
+	else if (drId=== 'dr3'){
+		this.setState({status2:"Negotiations"})
+	}
+	else if (drId=== 'dr4'){
+		this.setState({status2:"Accepted Offer"})
+	}
+	else if (drId=== 'dr5'){
+		this.setState({status2:"Contract Negotiations"})
+	}
+	else if (drId=== 'dr6'){
+		this.setState({status2:"Signed Contract"})
+	}
+	else if (drId=== 'dr7'){
+		this.setState({status2:"Board Package"})
+	}
+	else if (drId=== 'dr8'){
+		this.setState({status2:"Closing"})
+	}
+
 
 }
 
 render() {
 // console.log('Client props:', this.props.match.params.id)
-// console.log(this.state)
+console.log('in Client Component, state:', this.state)
 	return (
 		<div>
 		<h1>Client Page</h1>
@@ -117,7 +157,7 @@ render() {
 		<p>{this.state.client ? this.state.client.number : 'no client selected!'}</p>
 		<p>{this.state.client ? this.state.client.email : 'no client selected!'}</p>
 
-		<p>current stage: <b>{this.state.status}</b></p>
+		<p>current stage: <b>{this.currentStage()}</b></p>
 		<p>precentage to closing: </p>
 
 <button className="ui button" onClick={this.handleEditClick}>Edit</button>

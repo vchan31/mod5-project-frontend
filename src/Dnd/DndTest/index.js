@@ -26,7 +26,7 @@ const droppableStyle = {
 
 export default class DndTest extends React.Component {
 	render(){
-	// console.log('in drag n drop test: ', this.props)
+	console.log('in drag n drop test: ', this.props)
 
 		return (
 			<Wrapper>
@@ -41,7 +41,7 @@ export default class DndTest extends React.Component {
 				<Droppable dropOnChange={this.props.dropOnChange} id='dr3' style={droppableStyle}><h3><font color='white'> Negotiations</font></h3>
 				</Droppable>
 
-				<Droppable dropOnChange={this.props.dropOnChange} id='dr4' style={droppableStyle}><h3><font color='white'> Offer</font></h3>
+				<Droppable dropOnChange={this.props.dropOnChange} id='dr4' style={droppableStyle}><h3><font color='white'> Accepted Offer</font></h3>
 				</Droppable>
 
 				<Droppable dropOnChange={this.props.dropOnChange} id='dr5' style={droppableStyle}><h3><font color='white'> Contract Negotiations</font></h3>
