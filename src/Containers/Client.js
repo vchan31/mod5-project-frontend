@@ -82,7 +82,7 @@ fetch(`http://localhost:3000/api/v1/clients/${this.props.match.params.id}`,
 			status: this.state.status2,	
 		})
 	}).then(res=>{console.log(res)
-		alert('Changes Saved!')
+		alert('Changes to the Status has been Saved!')
 	})
 }}
 
@@ -238,7 +238,7 @@ render() {
 <br/>
 <br/>
 <br/>
-		<div>
+		<div className='scrumboard'>
 	<DndTest status={this.state.status} dropOnChange={this.dropOnChange}/>
 		<button className="ui button" onClick={this.handleScrumSave}>Save</button>
 		</div>
@@ -260,21 +260,12 @@ render() {
 
 
 
-	
-
-<br/>
-<br/>
-<br/>
-<br/>
 
 <Prequalification />
 
 
-<br/>
-<br/>
-<br/>
-<br/>
-<button className="ui button">prequal</button>
+
+
 
 
 	</div>

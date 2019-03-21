@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
+import { Button, Header, Image, Modal } from 'semantic-ui-react'
+
 
 class  Prequalification extends Component {
 
@@ -59,8 +61,14 @@ handleSubmit = (e) => {
 render(){
 // console.log(this.props)
 	return (
+
+
 	<div>
-		<h1> Prequalification</h1>
+
+	<Modal trigger={<button className="ui primary button">prequal</button>}>
+	<Modal.Header> <h1> Prequalification</h1></Modal.Header>
+		<Modal.Content>
+		<Modal.Description>
 		<form className="ui form" onSubmit={(e)=>this.handleSubmit(e)}>
 		<div className="field">
 		<label>Days Searching:</label>
@@ -103,9 +111,9 @@ render(){
 		</form>
 		
 
-			
-
-
+		</Modal.Description>
+		</Modal.Content>
+		</Modal>
 	</div>
 )
 

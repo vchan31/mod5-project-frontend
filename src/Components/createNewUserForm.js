@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Header, Icon, Image, Modal } from 'semantic-ui-react'
+import { Button, Header, Image, Modal } from 'semantic-ui-react'
 
 class CreateNewUserForm extends Component {
 
@@ -10,7 +10,19 @@ name: ""
 
 handleSubmit = (e) => {
 	e.preventDefault()
-	console.log('create a new user please!!!')
+	console.log('create a new user please!!!',this.state.name)
+	
+
+	fetch('http://localhost:3000/api/v1/users', {
+    		method: 'POST',
+    		headers: {
+					  'Content-Type': 'application/json',
+					  'Accept': 'application/json'},
+			body: JSON.stringify({
+				name: this.state.name
+			})
+    	}).then(res=>console.log(res))
+
 }
 
 handleOnChange = (e) => {

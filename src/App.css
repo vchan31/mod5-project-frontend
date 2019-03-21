@@ -64,3 +64,7 @@
     width: 300px;
     height: auto;
 }
+
+.scrumboard {
+  background-color: lightgrey;
+}

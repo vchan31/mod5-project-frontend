@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Header, Icon, Image, Modal } from 'semantic-ui-react'
+import {  Header, Image, Modal } from 'semantic-ui-react'
 
 
 class  UpdateClientForm extends Component {

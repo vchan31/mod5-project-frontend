@@ -8,7 +8,7 @@ const ClientContainer = props => {
 
 function mapClients(){
 	return props.clients.map(function(client){
-		return <ClientCard name={client.name} email={client.email} number={client.number} key={client.id} id={client.id}
+		return <ClientCard name={client.name} email={client.email} number={client.number} key={client.id} id={client.id} status={client.status}
 		/>
 	})
 }

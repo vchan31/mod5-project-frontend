@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+import { Progress } from 'semantic-ui-react'
 
 
 const ClientCard = props => {
@@ -8,9 +9,23 @@ const {
 	name,
 	email,
 	number,
-	id
+	id,
+	status
 	} = props
 // console.log(props)
+
+function calculatePercent(){
+	if(status==='OnBoarding'){return 12.5}
+	else if (status==='Showings'){return 25}
+else if (status==='Negotiations'){return 37.5}
+else if (status==='Accepted Offer'){return 50}
+else if (status==='Contract Negotiations'){return 62.5}
+else if (status==='Signed Contract'){return 75}
+else if (status==='Board Package'){return 87.5}
+else if (status==='Closing'){return 100}		
+}
+
+
 	return (
 <div>
 		<div className='Client-card' onClick={()=>{props.handleSelectClient(id)
@@ -22,9 +37,10 @@ const {
 		<p>{name}</p>
 		<p>{email}</p>
 		<p>{number}</p>
+		<Progress className='ui green progress'  percent={calculatePercent()} progress/>
 		</div>
 		</div>
-</div>
+		</div>
 	)
 
 }

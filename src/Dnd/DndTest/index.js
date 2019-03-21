@@ -21,8 +21,9 @@ const droppableStyle = {
 	backgroundColor: `#555`,
 	width: '200px',
 	height: '150px',
-	margin: '32px'
+	margin: '32px',
 };
+
 
 export default class DndTest extends React.Component {
 	render(){
