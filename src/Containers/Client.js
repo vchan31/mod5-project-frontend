@@ -4,6 +4,8 @@ import UpdateClientForm from '../Components/updateClientForm'
 import Prequalification from '../Components/Prequalification'
 import ClientInfo from '../Components/ClientInfo'
 import DndTest from '../Dnd/DndTest'
+import { Progress } from 'semantic-ui-react'
+
 
 
 
@@ -160,28 +162,31 @@ currentStage = () => {
 	else if (this.state.status2 === null){return this.state.status}
 }
 
-percentageToClosing = () => {
+
+ calculatePercent=()=>{
+ 	
 if(this.state.status2 === null){
 
-		if (this.state.status === 'OnBoarding') {return '12.5%'}
-		else if (this.state.status === 'Showings'){return '25%'}
-		else if (this.state.status === 'Negotiations'){return '37.5%'}
-		else if (this.state.status === 'Accepted Offer'){return '50%'}
-		else if (this.state.status === 'Contract Negotiations'){return '62.5%'}
-		else if (this.state.status === 'Signed Contract'){return '75%'}
-		else if (this.state.status === 'Board Package'){return '87.5%'}
-		else if (this.state.status === 'Closing'){return '100%'}
+		if (this.state.status === 'OnBoarding') {return 12.5}
+		else if (this.state.status === 'Showings'){return 25}
+		else if (this.state.status === 'Negotiations'){return 37.5}
+		else if (this.state.status === 'Accepted Offer'){return 50}
+		else if (this.state.status === 'Contract Negotiations'){return 62.5}
+		else if (this.state.status === 'Signed Contract'){return 75}
+		else if (this.state.status === 'Board Package'){return 87.5}
+		else if (this.state.status === 'Closing'){return 100}
 
 	}
 
-	else if (this.state.status2==='OnBoarding'){return '12.5%'}
-	else if (this.state.status2==='Showings'){return '25%'}
-	else if (this.state.status2 === 'Negotiations'){return '37.5%'}
-	else if (this.state.status2 === 'Accepted Offer'){return '50%'}
-	else if (this.state.status2 === 'Contract Negotiations'){return '62.5%'}
-	else if (this.state.status2 === 'Signed Contract'){return '75%'}
-	else if (this.state.status2 === 'Board Package'){return '87.5'}
-	else if (this.state.status2 === 'Closing'){return '100%'}
+
+		else if(this.state.status2==='OnBoarding'){return 12.5}
+		else if (this.state.status2==='Showings'){return 25}
+		else if (this.state.status2==='Negotiations'){return 37.5}
+		else if (this.state.status2==='Accepted Offer'){return 50}
+		else if (this.state.status2==='Contract Negotiations'){return 62.5}
+		else if (this.state.status2==='Signed Contract'){return 75}
+		else if (this.state.status2==='Board Package'){return 87.5}
+		else if (this.state.status2==='Closing'){return 100}		
 }
 
 
@@ -230,7 +235,8 @@ render() {
 		<p>{this.state.client ? this.state.client.email : 'no client selected!'}</p>
 
 		<p>current stage: <b>{this.currentStage()}</b></p>
-		<p>precentage to closing: <b>{this.percentageToClosing()}</b></p>
+		<p>precentage to closing: </p>
+		<Progress className='ui blue progress'  percent={this.calculatePercent()} progress/>
 
 {this.state.client ? <ClientInfo info={this.state.client}/> : "loading"}
 

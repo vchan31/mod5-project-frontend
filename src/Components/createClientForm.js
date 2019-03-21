@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Button, Header, Image, Modal } from 'semantic-ui-react'
+import { withRouter } from "react-router-dom";
+
 
 class  CreateClientForm extends Component {
 
-// console.log(props)
 state = {
 	name: "",
 	email: "",
@@ -25,7 +26,7 @@ handleSubmit = (e) => {
 	// 		name: this.state.name,
 	// 		number: this.state.number,
 	// 		email: this.state.email,
-	// 		user_id: 1,
+	// 		user_id: this.props.match.params.id,
 	// 		status: 'OnBoarding'
 	// 	})
 	// }).then(res=>console.log(res))
@@ -51,6 +52,7 @@ if (e.target.id === "name") {
 }
 
 render(){
+// console.log(this.props.match.params.id)
 
 	return (
 	<div>
@@ -97,7 +99,7 @@ render(){
 }
 }
 
-export default CreateClientForm
+export default withRouter(CreateClientForm)
 		// name: <input onChange={(e)=>this.handleOnChange(e)} type="text" id="name" value={this.state.name}/><br/>
   // 		email: <input onChange={(e)=>this.handleOnChange(e)} type="text" id="email" value={this.state.email}/><br/>
   // 		number: <input onChange={(e)=>this.handleOnChange(e)} type="text" id="number" value={this.state.number}/><br/>

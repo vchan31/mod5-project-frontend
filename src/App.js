@@ -27,20 +27,20 @@ class App extends Component {
      
     return (
       <Fragment>
-      <Switch>
+        <Switch>
+            <Route 
+              path="/client/:id" 
+              render={(routerProps)=>{
+                // console.log(routerProps)
+                return <Client {...routerProps} />
+              }} 
+              />
+            <Route path="/headquarters/:id" render={(routerProps)=><HeadQuarters {...routerProps} clients={this.props.clients} 
+            />}/>
 
-      <Route 
-        path="/client/:id" 
-        render={(routerProps)=>{
-          // console.log(routerProps)
-          return <Client {...routerProps} />
-        }} 
-        />
-      <Route path="/headquarters" render={(routerProps)=><HeadQuarters {...routerProps} clients={this.props.clients} 
-      />}/>
-      <Route exact path="/" component={Login}/>
+            <Route exact path="/" component={Login}/>
 
-      </Switch>
+        </Switch>
       </Fragment>
     );
   }
