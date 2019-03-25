@@ -7,6 +7,7 @@ import DndTest from '../Dnd/DndTest'
 import { Progress } from 'semantic-ui-react'
 import DebtIncome from '../Components/DebtIncome'
 import NegotiationDetails from '../Components/NegotiationDetails'
+import '../Client.css'
 
 
 
@@ -267,19 +268,22 @@ render() {
 {this.state.client ? <ClientInfo info={this.state.client}/> : "loading"}
 
 <br/>
+	<div className='topright'>
+	{this.state.client ? <UpdateClientForm clientId={this.state.client.id} targetClient={this.state.client} state={this.state}
+	handleSubmit={this.handleSubmit} handleOnChange={this.handleOnChange} handleEditClick={this.handleEditClick}/> : null}
+	<br/>
+		<button className="ui button" onClick={this.handleScrumSave}>Save</button>
+		</div>
 <br/>
 <br/>
 <br/>
 		<div className='scrumboard'>
 	<h1>Client Stages</h1>
 	<DndTest status={this.state.status} dropOnChange={this.dropOnChange} client={this.state.client}/>
-		<button className="ui button" onClick={this.handleScrumSave}>Save</button>
 		</div>
 
 <br/>
 <br/>
-	{this.state.client ? <UpdateClientForm clientId={this.state.client.id} targetClient={this.state.client} state={this.state}
-	handleSubmit={this.handleSubmit} handleOnChange={this.handleOnChange} handleEditClick={this.handleEditClick}/> : null}
 <br/>
 <br/>
 		<p>current suggested action(s): <b>{this.state.client ? this.currentAction() : 'loading'}</b></p>

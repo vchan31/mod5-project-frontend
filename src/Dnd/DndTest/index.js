@@ -22,6 +22,7 @@ const droppableStyle = {
 	width: '200px',
 	height: '150px',
 	margin: '32px',
+	'borderRadius': '5px'
 };
 
 

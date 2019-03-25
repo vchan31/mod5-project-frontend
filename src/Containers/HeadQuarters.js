@@ -4,6 +4,7 @@ import CreateClientForm from '../Components/createClientForm'
 import SideBar from '../Components/SideBar'
 import { connect } from 'react-redux'
 import ClientAdapter from '../apis/ClientAdapter'
+import '../HeadQuarters.css'
 
 
 
@@ -21,13 +22,23 @@ render(){
 console.log('inside HQ, props are:', this.props)
 	return (
 		<div>
+			<div className='header1'>
+				<h1>HeadQuarters Page</h1>
+			</div>
+			<CreateClientForm /> 
+			<br/>
 
-		<h1>HeadQuarters Page</h1>
-		<CreateClientForm /> 
-		<br/>
-		<SideBar />
-		{this.props.match.params.id ? <ClientContainer /> : 'Loading...' }
-
+			<div className='section'>
+				<div className='nav'>
+					<SideBar />
+				</div>
+				<div className='clients'>
+				{this.props.match.params.id ? <ClientContainer /> : 'Loading...' }
+				</div>
+			</div>
+			<div className='footer'>
+				<p>Footer</p>
+			</div>
 		</div>
 	)
 
