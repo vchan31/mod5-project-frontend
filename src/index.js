@@ -12,7 +12,6 @@ import 'semantic-ui-css/semantic.min.css'
 const store = createStore(reducer)
 
 
-
 ReactDOM.render(
 	<Provider store={store}>
 		<Router>

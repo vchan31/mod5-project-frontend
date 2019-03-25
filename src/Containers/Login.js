@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import logo from '../logo.svg';
 import '../App.css';
 import { withRouter } from "react-router-dom";
-import ClientAdapter from '../apis/ClientAdapter'
 import { connect } from 'react-redux'
 import CreateNewUserForm from '../Components/createNewUserForm'
 
@@ -26,7 +25,6 @@ let targetUser = this.state.users.find((user)=>{
   return user.name === this.state.username
 })
   this.props.sendUserToStore(targetUser.id)
-  // ClientAdapter.getUsers().then(res=>this.props.fetchClients(res))
   this.props.history.push(`/headquarters/${targetUser.id}`)
 }
 
@@ -37,6 +35,7 @@ this.setState({
 }
 
   render() {
+    // console.log('Login Renders! .... also its props:', this.props)
     // console.log(this.state)
     return (
         <div>
@@ -57,10 +56,10 @@ this.setState({
           <input type="text" name="username" placeholder="Username" onChange={(e)=>{this.handleOnChange(e)}}value={this.state.username}/>
           <label ></label>
         </div><br/>
-        <div>
+       {/* <div>
           <input type="password" name="password" placeholder="Password" />
           <label ></label>
-        </div>
+        </div>*/}
         <br/>
         <button type="submit" className = 'ui primary button'
         > Login </button>
@@ -76,7 +75,7 @@ function mapDispatchToProps(dispatch){
 
   return {
     sendUserToStore: (clientId) =>{
-      console.log('sending client to Store!')
+      // console.log('sending User... to Store!')
   dispatch({type:'SELECT_USER', payload: clientId})
     }
   } 

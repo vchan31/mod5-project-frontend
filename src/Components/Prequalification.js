@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
-import { Button, Header, Image, Modal } from 'semantic-ui-react'
+import {  Modal } from 'semantic-ui-react'
 
 
 class  Prequalification extends Component {
@@ -36,25 +36,27 @@ handleSubmit = (e) => {
 	e.preventDefault()
 
 	console.log('submited on prequal')
-	// fetch(`http://localhost:3000/api/v1/clients/${this.props.match.params.id}`, 
-	// {
-	// 	method: 'PATCH',
-	// 	headers: {
-	// 		"Content-Type": "application/json",
- //        	Accept: "application/json"
-	// 	},
-	// 	body: JSON.stringify({
-	// 		days_searching: this.state.days,
-	// 		budget: this.state.budget,
-	// 		annual_income: this.state.income,
-	// 		area_of_interest: this.state.area,
-	// 		financing: this.state.financing,
-	// 		moving_date: this.state.moveInDate,
-	// 		net_assets: this.state.assets,
-	// 		apt_type: this.state.apt_type,
-	// 		size: this.state.size
-	// 	})
-	// }).then(res=>console.log(res))
+	fetch(`http://localhost:3000/api/v1/clients/${this.props.match.params.id}`, 
+	{
+		method: 'PATCH',
+		headers: {
+			"Content-Type": "application/json",
+        	Accept: "application/json"
+		},
+		body: JSON.stringify({
+			days_searching: this.state.days,
+			budget: this.state.budget,
+			annual_income: this.state.income,
+			area_of_interest: this.state.area,
+			financing: this.state.financing,
+			moving_date: this.state.moveInDate,
+			net_assets: this.state.assets,
+			apt_type: this.state.apt_type,
+			size: this.state.size
+		})
+	}).then(res=>{console.log(res)
+		alert('Prequalification submited and saved!!')
+	})
 
 }
 

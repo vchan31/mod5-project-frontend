@@ -11,7 +11,7 @@ class HeadQuarters extends Component {
 
 
  componentDidMount(){
-	
+	console.log('I am in the HQ component did mount, and about to do a fetch?? hmmm, could I have done this in the App component...? ')
 	ClientAdapter.getClients(this.props.match.params.id).then(res=>this.props.fetchUserClients(res.clients))
 }
 // props.fetchUserClients()
@@ -26,7 +26,7 @@ console.log('inside HQ, props are:', this.props)
 		<CreateClientForm /> 
 		<br/>
 		<SideBar />
-		{this.props.selectedUser ? <ClientContainer /> : 'Loading...' }
+		{this.props.match.params.id ? <ClientContainer /> : 'Loading...' }
 
 		</div>
 	)

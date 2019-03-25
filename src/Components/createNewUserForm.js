@@ -21,8 +21,9 @@ handleSubmit = (e) => {
 			body: JSON.stringify({
 				name: this.state.name
 			})
-    	}).then(res=>console.log(res))
-
+    	}).then(res=>{alert('User Created! please enter your username to login')
+    		console.log(res)})
+// I should either refresh or push the user to the HeadQuarters page, 
 }
 
 handleOnChange = (e) => {

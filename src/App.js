@@ -23,7 +23,7 @@ class App extends Component {
 // 	console.log(clientId)
 // }
   render() {
-  	// console.log('App props: ',this.props)
+  	// console.log('App.js and App props: ', this.props)
      
     return (
       <Fragment>
@@ -51,7 +51,7 @@ class App extends Component {
 
   	return {
   		clients: state.clients,
-  		selectedClient: state.selectedClient
+  		selectedUser: state.selectedUser
   	}
   }
 

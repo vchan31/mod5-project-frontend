@@ -5,7 +5,8 @@ import Prequalification from '../Components/Prequalification'
 import ClientInfo from '../Components/ClientInfo'
 import DndTest from '../Dnd/DndTest'
 import { Progress } from 'semantic-ui-react'
-
+import DebtIncome from '../Components/DebtIncome'
+import NegotiationDetails from '../Components/NegotiationDetails'
 
 
 
@@ -17,13 +18,14 @@ class Client extends Component {
 	number: "",
 	status: null,
 	status2: null,
-	client: null
+	client: null,
+	accepted_offer: null
 }
 
 componentDidMount(){
 	fetch(`http://localhost:3000/api/v1/clients/${this.props.match.params.id}`).then(res=>res.json()).then(
 		res=>{
-		this.setState({status: res.status, client: res})
+		this.setState({status: res.status, client: res, accepted_offer: res.accepted_offer})
 		
 		
 	}
@@ -53,27 +55,7 @@ handleSubmit = (e) => {
 	e.preventDefault()
 
 	console.log('I hit the submit button!')
-	// fetch(`http://localhost:3000/api/v1/clients/${this.props.match.params.id}`, 
-	// {
-	// 	method: 'PATCH',
-	// 	headers: {
-	// 		"Content-Type": "application/json",
- //        	Accept: "application/json"
-	// 	},
-	// 	body: JSON.stringify({
-	// 		name: this.state.name,
-	// 		number: this.state.number,
-	// 		email: this.state.email
-	// 	})
-	// }).then(res=>console.log(res))
-
-}
-
-handleScrumSave = () => {
-console.log('saved button clicked')
-if (this.state.status2 === null){alert('No changes to be made!!')}
-	else {
-fetch(`http://localhost:3000/api/v1/clients/${this.props.match.params.id}`, 
+	fetch(`http://localhost:3000/api/v1/clients/${this.props.match.params.id}`, 
 	{
 		method: 'PATCH',
 		headers: {
@@ -81,12 +63,54 @@ fetch(`http://localhost:3000/api/v1/clients/${this.props.match.params.id}`,
         	Accept: "application/json"
 		},
 		body: JSON.stringify({
-			status: this.state.status2,	
+			name: this.state.name,
+			number: this.state.number,
+			email: this.state.email
 		})
-	}).then(res=>{console.log(res)
-		alert('Changes to the Status has been Saved!')
-	})
-}}
+	}).then(res=>console.log(res))
+
+}
+
+handleScrumSave = () => {
+console.log('saved button clicked')
+if (this.state.status2 === null){alert('No changes to be made!!')}
+
+	else if (this.state.status2 === 'Accepted Offer')
+	{
+		fetch(`http://localhost:3000/api/v1/clients/${this.props.match.params.id}`, 
+		{
+			method: 'PATCH',
+			headers: {
+				"Content-Type": "application/json",
+	        	Accept: "application/json"
+			},
+			body: JSON.stringify({
+				status: this.state.status2,
+				accepted_offer: true	
+			})
+		}).then(res=>{console.log(res)
+			alert('Changes to the Status has been Saved!')
+			this.setState({accepted_offer: true})
+		})
+
+	}
+
+	else {
+		fetch(`http://localhost:3000/api/v1/clients/${this.props.match.params.id}`, 
+		{
+			method: 'PATCH',
+			headers: {
+				"Content-Type": "application/json",
+	        	Accept: "application/json"
+			},
+			body: JSON.stringify({
+				status: this.state.status2,	
+			})
+		}).then(res=>{console.log(res)
+			alert('Changes to the Status has been Saved!')
+		})
+	}
+}
 
 handleEditClick = () => {
 
@@ -164,7 +188,7 @@ currentStage = () => {
 
 
  calculatePercent=()=>{
- 	
+
 if(this.state.status2 === null){
 
 		if (this.state.status === 'OnBoarding') {return 12.5}
@@ -225,10 +249,12 @@ dropOnChange = (drId) => {
 
 
 render() {
+	// console.log(this.state)
 // console.log('Client props:', this.props.match.params.id)
 	return (
 		<div>
-		<h1>Client Page</h1>
+	{this.state.status2 === 'Negotiations' ? <NegotiationDetails clientInfo={this.state.client}/> : 'loading'}		
+	<h1>Client Page</h1>
 
 		<p>{this.state.client ? this.state.client.name : 'no client selected!' }</p>
 		<p>{this.state.client ? this.state.client.number : 'no client selected!'}</p>
@@ -245,7 +271,8 @@ render() {
 <br/>
 <br/>
 		<div className='scrumboard'>
-	<DndTest status={this.state.status} dropOnChange={this.dropOnChange}/>
+	<h1>Client Stages</h1>
+	<DndTest status={this.state.status} dropOnChange={this.dropOnChange} client={this.state.client}/>
 		<button className="ui button" onClick={this.handleScrumSave}>Save</button>
 		</div>
 
