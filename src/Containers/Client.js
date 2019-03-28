@@ -5,7 +5,7 @@ import Prequalification from '../Components/Prequalification'
 import ClientInfo from '../Components/ClientInfo'
 import DndTest from '../Dnd/DndTest'
 import { Progress } from 'semantic-ui-react'
-import DebtIncome from '../Components/DebtIncome'
+// import DebtIncome from '../Components/DebtIncome'
 import NegotiationDetails from '../Components/NegotiationDetails'
 import '../Client.css'
 
@@ -251,21 +251,26 @@ dropOnChange = (drId) => {
 
 render() {
 	// console.log(this.state)
-// console.log('Client props:', this.props.match.params.id)
+	// console.log('Client props:', this.props.match.params.id)
 	return (
-		<div>
-	{this.state.status2 === 'Negotiations' ? <NegotiationDetails clientInfo={this.state.client}/> : 'loading'}		
+<div>
+	{this.state.status2 === 'Negotiations' ? <NegotiationDetails clientInfo={this.state.client}/> : null}		
+	<div className='header2'>
 	<h1>Client Page</h1>
-
-		<p>{this.state.client ? this.state.client.name : 'no client selected!' }</p>
+	</div>
+	<br/>
+	<div className='stats'>
+		<h2>{this.state.client ? this.state.client.name : 'no client selected!' }</h2>
 		<p>{this.state.client ? this.state.client.number : 'no client selected!'}</p>
 		<p>{this.state.client ? this.state.client.email : 'no client selected!'}</p>
 
 		<p>current stage: <b>{this.currentStage()}</b></p>
 		<p>precentage to closing: </p>
 		<Progress className='ui blue progress'  percent={this.calculatePercent()} progress/>
-
 {this.state.client ? <ClientInfo info={this.state.client}/> : "loading"}
+<br/>
+<Prequalification />
+	</div>
 
 <br/>
 	<div className='topright'>
@@ -273,7 +278,7 @@ render() {
 	handleSubmit={this.handleSubmit} handleOnChange={this.handleOnChange} handleEditClick={this.handleEditClick}/> : null}
 	<br/>
 		<button className="ui button" onClick={this.handleScrumSave}>Save</button>
-		</div>
+	</div>
 <br/>
 <br/>
 <br/>
@@ -298,14 +303,13 @@ render() {
 
 
 
-<Prequalification />
 
 
 
 
 
 
-	</div>
+</div>
 	)
 }
 }

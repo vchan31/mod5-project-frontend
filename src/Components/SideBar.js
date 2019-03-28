@@ -2,7 +2,7 @@ import React from 'react';
 
 
 const SideBar = props => {
-// console.log(props)
+console.log('sidebar', props)
 	return (
 		<div className="ui vertical menu">
 		<div className="item">

@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 
 const ClientContainer = props => {
-console.log('Inside Client container, and its props:', props)
+// console.log('Inside Client container, and its props:', props)
 function mapClients(){
 
 	if (props.clients.length === 0) {return ' You currently Do not have any active Clients, please add more in the New Client section...'}

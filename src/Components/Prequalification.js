@@ -34,7 +34,6 @@ this.setState({
 
 handleSubmit = (e) => {
 	e.preventDefault()
-
 	console.log('submited on prequal')
 	fetch(`http://localhost:3000/api/v1/clients/${this.props.match.params.id}`, 
 	{
@@ -67,7 +66,7 @@ render(){
 
 	<div>
 
-	<Modal trigger={<button className="ui primary button">prequal</button>}>
+	<Modal trigger={<button className="ui primary button">Prequal</button>}>
 	<Modal.Header> <h1> Prequalification</h1></Modal.Header>
 		<Modal.Content>
 		<Modal.Description>

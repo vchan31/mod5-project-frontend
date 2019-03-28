@@ -12,25 +12,25 @@ class HeadQuarters extends Component {
 
 
  componentDidMount(){
-	console.log('I am in the HQ component did mount, and about to do a fetch?? hmmm, could I have done this in the App component...? ')
+	// console.log('I am in the HQ component did mount, and about to do a fetch?? hmmm, could I have done this in the App component...? ')
 	ClientAdapter.getClients(this.props.match.params.id).then(res=>this.props.fetchUserClients(res.clients))
 }
 // props.fetchUserClients()
 	
 
 render(){
-console.log('inside HQ, props are:', this.props)
+// console.log('inside HQ, props are:', this.props)
 	return (
 		<div>
 			<div className='header1'>
-				<h1>HeadQuarters Page</h1>
+				<h1>Head-Quarters</h1>
 			</div>
 			<CreateClientForm /> 
 			<br/>
 
 			<div className='section'>
 				<div className='nav'>
-					<SideBar />
+					<SideBar clientId={this.props.match.params.id}/>
 				</div>
 				<div className='clients'>
 				{this.props.match.params.id ? <ClientContainer /> : 'Loading...' }
