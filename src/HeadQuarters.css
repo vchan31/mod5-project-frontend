@@ -6,6 +6,7 @@
   text-align: center;
   font-size: 35px;
   color: white;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
 body {
@@ -27,9 +28,10 @@ body {
   /*-webkit-flex: 1;*/
   /*-ms-flex: 1;*/
   /*flex: 1;*/
-  background: #ccc;
+  background: #032e6e;
   padding: 20px;
   border-radius: 5px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
 .clients {
@@ -40,9 +42,10 @@ body {
 
 .footer {
   background-color: #4ed4fc;
-  padding: 30px;
+  padding: 50px;
   text-align: center;
   color: white;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
 /* Client individual card */

@@ -26,6 +26,20 @@ else if (e.target.id == 'monthlyCost'){
 
 }
 
+createTransaction = () => {
+	fetch('http://localhost:3000/api/v1/transactions', {
+    		method: 'POST',
+    		headers: {
+					  'Content-Type': 'application/json',
+					  'Accept': 'application/json'},
+			body: JSON.stringify({
+				price: this.state.purchasePrice,
+				monthly_cost: this.state.monthlyCost,
+				client_id: this.props.clientInfo.id
+			})
+    	}).then(res=>console.log(res))
+}
+
 monthlyMortgagePayment = (principle, interest, term) => {
 return (principle * interest * (Math.pow(1 + interest, term)) / (Math.pow(1 + interest, term) - 1))
 }
@@ -49,7 +63,7 @@ return (mortgagePayment + maintenance) / income
 
 render (){
 
-console.log(this.props)
+console.log(this.props.clientInfo.id)
 return(
 
 <div>
@@ -76,12 +90,14 @@ interest Rate: 4%
 monthly mortgage payment: ${this.changeToCurrencyString(this.monthlyMortgagePayment(this.changeToNumber(this.props.clientInfo.financing),(this.state.interestRate/ 100 / 12), (this.state.term * 12)))}
 <br/>
 <br/>
-<p><b>Your Debt to income Ratio: {this.calculateDebtIncome()} </b></p>
+<p><b>Your Debt to income Ratio: {(this.calculateDebtIncome()*100).toFixed(2) + '%'} </b></p>
  </Modal.Description>
 </Modal.Content>
 <br/>
  <Button onClick={this.close}>K THX!</Button>
- {/*<Button> Submit</Button> */}
+ {<Button className="ui primary button" onClick={this.createTransaction}> Submit</Button> }
+ <br/>
+
 </Modal>
 </div>
 

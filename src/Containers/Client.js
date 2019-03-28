@@ -266,7 +266,6 @@ render() {
 	// console.log('Client props:', this.props.match.params.id)
 	return (
 <div>
-	{this.state.client ? console.log(this.state.client.user.id) : null}
 	{this.state.status2 === 'Negotiations' ? <NegotiationDetails clientInfo={this.state.client}/> : null}		
 	<div className='header2'>
 	<h1>Client Page</h1>
@@ -304,9 +303,10 @@ render() {
 <br/>
 <br/>
 <br/>
+		<div className='lowertext'>
 		<p>current suggested action(s): <b>{this.state.client ? this.currentAction() : 'loading'}</b></p>
 		<p>next action: <b>{this.state.client ? this.nextAction() : 'loading'}</b> </p>
-
+		</div>
 <br/>
 <br/>
 <br/>

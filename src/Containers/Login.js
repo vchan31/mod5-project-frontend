@@ -43,7 +43,8 @@ this.setState({
       <div className="App">
 
         <header className="App-header">
-        <h1 className='Header'>DOUGLAS ELLIMAN</h1>
+        {/*<h1 className='Header'>DOUGLAS ELLIMAN</h1>*/}
+        <img className='LogoImg' src='http://localhost:3002/DE_logo.png' alt='shaddup react!'/>
         <h2>Login</h2>
           <img src={logo} className="App-logo" alt="logo" />
         </header>
