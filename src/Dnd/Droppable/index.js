@@ -9,7 +9,7 @@ drop = (e) => {
 
 	if (['dr2','dr3','dr4','dr5','dr6','dr7','dr8'].includes(e.target.id)){
 
-		if ( this.props.client.budget === null && this.props.client.area_of_interest === null ) {
+		if ( this.props.client.budget === null && this.props.client.area_of_interest === null && this.props.prequal === false) {
 		alert('It Looks like this client has not been properly pre-qualified; please schedule an appointment with him/her and complete the form;')
 		}
 

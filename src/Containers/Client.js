@@ -8,6 +8,8 @@ import { Progress } from 'semantic-ui-react'
 // import DebtIncome from '../Components/DebtIncome'
 import NegotiationDetails from '../Components/NegotiationDetails'
 import '../Client.css'
+import { withRouter } from "react-router-dom";
+
 
 
 
@@ -20,7 +22,8 @@ class Client extends Component {
 	status: null,
 	status2: null,
 	client: null,
-	accepted_offer: null
+	accepted_offer: null,
+	prequalDone: false
 }
 
 componentDidMount(){
@@ -73,7 +76,6 @@ handleSubmit = (e) => {
 }
 
 handleScrumSave = () => {
-console.log('saved button clicked')
 if (this.state.status2 === null){alert('No changes to be made!!')}
 
 	else if (this.state.status2 === 'Accepted Offer')
@@ -111,6 +113,8 @@ if (this.state.status2 === null){alert('No changes to be made!!')}
 			alert('Changes to the Status has been Saved!')
 		})
 	}
+
+
 }
 
 handleEditClick = () => {
@@ -216,6 +220,15 @@ if(this.state.status2 === null){
 
 
 prequalDone = () => {
+    this.setState({ prequalDone: true});
+}
+
+deleteClient = () => {
+	fetch(`http://localhost:3000/api/v1/clients/${this.state.client.id}`, { method: 'DELETE' }) // remove from database
+      .then(response => {
+       console.log(response)
+       this.props.history.push(`/headquarters/${this.state.client.user.id}`)
+   })
 
 }
 
@@ -250,10 +263,10 @@ dropOnChange = (drId) => {
 
 
 render() {
-	// console.log(this.state)
 	// console.log('Client props:', this.props.match.params.id)
 	return (
 <div>
+	{this.state.client ? console.log(this.state.client.user.id) : null}
 	{this.state.status2 === 'Negotiations' ? <NegotiationDetails clientInfo={this.state.client}/> : null}		
 	<div className='header2'>
 	<h1>Client Page</h1>
@@ -269,7 +282,7 @@ render() {
 		<Progress className='ui blue progress'  percent={this.calculatePercent()} progress/>
 {this.state.client ? <ClientInfo info={this.state.client}/> : "loading"}
 <br/>
-<Prequalification />
+<Prequalification prequalDone={this.prequalDone}/>
 	</div>
 
 <br/>
@@ -284,7 +297,7 @@ render() {
 <br/>
 		<div className='scrumboard'>
 	<h1>Client Stages</h1>
-	<DndTest status={this.state.status} dropOnChange={this.dropOnChange} client={this.state.client}/>
+	<DndTest status={this.state.status} dropOnChange={this.dropOnChange} client={this.state.client} prequal={this.state.prequalDone}/>
 		</div>
 
 <br/>
@@ -299,7 +312,7 @@ render() {
 <br/>
 <br/>
 
-
+<button onClick={this.deleteClient}className="ui primary button">Delete</button>
 
 
 
@@ -321,4 +334,4 @@ function mapStateToProps(state){
 	}
 }
 
-export default connect(mapStateToProps)(Client)
+export default withRouter(connect(mapStateToProps)(Client))

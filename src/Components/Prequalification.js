@@ -34,7 +34,6 @@ this.setState({
 
 handleSubmit = (e) => {
 	e.preventDefault()
-	console.log('submited on prequal')
 	fetch(`http://localhost:3000/api/v1/clients/${this.props.match.params.id}`, 
 	{
 		method: 'PATCH',
@@ -53,9 +52,11 @@ handleSubmit = (e) => {
 			apt_type: this.state.apt_type,
 			size: this.state.size
 		})
-	}).then(res=>{console.log(res)
-		alert('Prequalification submited and saved!!')
-	})
+	}).then(res=>res.json()).then(res =>{
+		console.log(res)
+		if(res.budget !== null && res.area_of_interest !== null){this.props.prequalDone()}
+	}
+	)
 
 }
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Header, Image, Modal } from 'semantic-ui-react'
+import { withRouter } from "react-router-dom";
 
 class CreateNewUserForm extends Component {
 
@@ -10,9 +11,6 @@ name: ""
 
 handleSubmit = (e) => {
 	e.preventDefault()
-	console.log('create a new user please!!!',this.state.name)
-	
-
 	fetch('http://localhost:3000/api/v1/users', {
     		method: 'POST',
     		headers: {
@@ -21,8 +19,7 @@ handleSubmit = (e) => {
 			body: JSON.stringify({
 				name: this.state.name
 			})
-    	}).then(res=>{alert('User Created! please enter your username to login')
-    		console.log(res)})
+    	}).then(res=>res.json()).then(res=>{this.props.history.push(`/headquarters/${res.id}`)})
 // I should either refresh or push the user to the HeadQuarters page, 
 }
 
@@ -33,7 +30,7 @@ this.setState({
 }
 
 render(){
-
+console.log(this.props)
 
 	return(
 		<div>
@@ -74,4 +71,4 @@ render(){
 }
 
 
-export default CreateNewUserForm
+export default withRouter(CreateNewUserForm)

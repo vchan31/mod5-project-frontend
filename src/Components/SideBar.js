@@ -10,14 +10,14 @@ console.log('sidebar', props)
 			</div>
 			<div className="menu">
 				<a href="/headquarters" className="item">Urgent Matters</a>
-				<a href="/headquarters" className="item">Pending Deals</a>
-				<a href="/headquarters" className="item">Current Offers</a>
+				<a href='/headquarters' className="item">Pending Deals</a>
+				<a href='/headquarters' className="item">Current Offers</a>
 			</div>
 		</div>
 			<div className="item"><div className="header">Budgeting Solutions
 			</div>
-				<div className="menu"><a href="/headquarters" className="item">Marketing</a>
-				<a href="/headquarters" className="item">Metrics</a>
+				<div className="menu"><a href='/headquarters' className="item">Marketing</a>
+				<a href='/headquarters' className="item">Metrics</a>
 				</div>
 			</div>
 			

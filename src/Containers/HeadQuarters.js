@@ -35,9 +35,9 @@ render(){
 				<div className='clients'>
 				{this.props.match.params.id ? <ClientContainer /> : 'Loading...' }
 				</div>
-			</div>
+			</div><br/>
 			<div className='footer'>
-				<p>Footer</p>
+				<p></p>
 			</div>
 		</div>
 	)
