@@ -8,6 +8,7 @@ state = {open: true,
 	term: 30,
 	purchasePrice: "",
 	monthlyCost: '',
+	address: ''
 	
 }
 
@@ -18,12 +19,15 @@ close = () => this.setState({
 
 handleOnChange = (e) => {
 
-if (e.target.id == 'Purchase Price')
+if (e.target.id === 'Purchase Price')
 	{this.setState({purchasePrice: e.target.value})}
-else if (e.target.id == 'monthlyCost'){
-	this.setState({monthlyCost: e.target.value})
+else if (e.target.id === 'monthlyCost'){
+	this.setState({monthlyCost: e.target.value})}
+else if (e.target.id === 'address'){
+	this.setState({
+		address: e.target.value
+	})
 }
-
 }
 
 createTransaction = () => {
@@ -35,9 +39,12 @@ createTransaction = () => {
 			body: JSON.stringify({
 				price: this.state.purchasePrice,
 				monthly_cost: this.state.monthlyCost,
-				client_id: this.props.clientInfo.id
+				client_id: this.props.clientInfo.id,
+				address: this.state.address
 			})
-    	}).then(res=>console.log(res))
+    	}).then(res=>{console.log(res)
+    		alert('transaction created!!')
+    	})
 }
 
 monthlyMortgagePayment = (principle, interest, term) => {
@@ -54,16 +61,16 @@ changeToCurrencyString = (number) => {
 
 calculateDebtIncome = () => {
 let income = this.changeToNumber(this.props.clientInfo.annual_income)
-let mortgagePayment = this.monthlyMortgagePayment(this.changeToNumber(this.props.clientInfo.financing),(this.state.interestRate /100 / 12), (this.state.term * 12))
-let maintenance = 1400
+let mortgagePayment = this.monthlyMortgagePayment((this.state.purchasePrice*.25),(this.state.interestRate /100 / 12), (this.state.term * 12))
+let maintenance = this.changeToNumber(this.state.monthlyCost)
 
-return (mortgagePayment + maintenance) / income
+return (mortgagePayment + maintenance)*12 / income
 
 }
 
 render (){
 
-console.log(this.props.clientInfo.id)
+// console.log(this.state.monthlyCost)
 return(
 
 <div>
@@ -75,7 +82,8 @@ return(
 <Image wrapped size='medium' src='http://localhost:3002/img_avatar3.png' />
  <Modal.Description>
  <Header>Congratulations on finding an Aparment!</Header>
-<p> Lets help you crunch some numbers!</p>
+<p> Lets help you crunch some numbers and start tracking this transaction!</p>
+address: <input onChange={(e)=>this.handleOnChange(e)} type='string' value={this.state.address} id='address'></input><br/>
 Purchase Price: <input onChange={(e)=>this.handleOnChange(e)} type='number' 
 value={this.state.purchasePrice} id='Purchase Price'></input> <br/>
 monthly cost (taxes too): <input onChange={(e)=>this.handleOnChange(e)} type='number' value={this.state.monthlyCost}
@@ -87,7 +95,7 @@ interest Rate: 4%
 30 year 
 <br/>
 <br/>
-monthly mortgage payment: ${this.changeToCurrencyString(this.monthlyMortgagePayment(this.changeToNumber(this.props.clientInfo.financing),(this.state.interestRate/ 100 / 12), (this.state.term * 12)))}
+monthly mortgage payment: ${this.changeToCurrencyString(this.monthlyMortgagePayment((this.state.purchasePrice*.25),(this.state.interestRate/ 100 / 12), (this.state.term * 12)))}
 <br/>
 <br/>
 <p><b>Your Debt to income Ratio: {(this.calculateDebtIncome()*100).toFixed(2) + '%'} </b></p>

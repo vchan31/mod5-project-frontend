@@ -17,7 +17,7 @@ console.log('sidebar', props)
 			<div className="item"><div className="header">Budgeting Solutions
 			</div>
 				<div className="menu"><a href='/headquarters' className="item">Marketing</a>
-				<a href='/headquarters' className="item">Metrics</a>
+				<a href={`/metrics/${props.clientId}`} className="item">Metrics</a>
 				</div>
 			</div>
 			

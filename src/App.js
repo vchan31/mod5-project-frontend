@@ -5,6 +5,7 @@ import Client from './Containers/Client'
 import HeadQuarters from './Containers/HeadQuarters'
 import './App.css';
 import { connect } from 'react-redux'
+import Metrics from './Containers/Metrics'
 
 
 class App extends Component {
@@ -39,7 +40,7 @@ class App extends Component {
             />}/>
 
             <Route exact path="/" component={Login}/>
-
+            <Route exact path="/metrics/:id" render={(routerProps)=>{return <Metrics {...routerProps}/>}}/>
         </Switch>
       </Fragment>
     );

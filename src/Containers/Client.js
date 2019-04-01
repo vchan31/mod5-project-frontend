@@ -77,7 +77,7 @@ handleSubmit = (e) => {
 
 handleScrumSave = () => {
 if (this.state.status2 === null){alert('No changes to be made!!')}
-
+// logic here patches the backend if there is an accepted offer; so user can progress, 
 	else if (this.state.status2 === 'Accepted Offer')
 	{
 		fetch(`http://localhost:3000/api/v1/clients/${this.props.match.params.id}`, 
@@ -96,6 +96,36 @@ if (this.state.status2 === null){alert('No changes to be made!!')}
 			this.setState({accepted_offer: true})
 		})
 
+	}
+	else if (this.state.status2 === 'Signed Contract'){
+		fetch(`http://localhost:3000/api/v1/clients/${this.props.match.params.id}`, 
+		{
+			method: 'PATCH',
+			headers: {
+				"Content-Type": "application/json",
+	        	Accept: "application/json"
+			},
+			body: JSON.stringify({
+				status: this.state.status2,	
+			})
+		}).then(res=>{console.log(res)
+		})
+	
+
+	fetch(`http://localhost:3000/api/v1/transactions/${this.state.client.transactions[0].id}`, 
+		{
+			method: 'PATCH',
+			headers: {
+				"Content-Type": "application/json",
+	        	Accept: "application/json"
+			},
+			body: JSON.stringify({
+				contract: true	
+			})
+		}).then(res=>{console.log(res)
+			alert('Changes to the Status of the Contract being signed has been Saved!')
+			
+		})
 	}
 
 	else {
@@ -251,6 +281,7 @@ dropOnChange = (drId) => {
 	}
 	else if (drId=== 'dr6'){
 		this.setState({status2:"Signed Contract"})
+		alert('congrats on the contract signed!')
 	}
 	else if (drId=== 'dr7'){
 		this.setState({status2:"Board Package"})
@@ -263,7 +294,7 @@ dropOnChange = (drId) => {
 
 
 render() {
-	// console.log('Client props:', this.props.match.params.id)
+	console.log(this.state.client)
 	return (
 <div>
 	{this.state.status2 === 'Negotiations' ? <NegotiationDetails clientInfo={this.state.client}/> : null}		
