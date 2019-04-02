@@ -15,6 +15,8 @@ else{
 		/>
 	})}
 }
+
+
 return (
 		<div className='ui grid'>
 

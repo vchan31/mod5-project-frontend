@@ -21,11 +21,20 @@ componentDidMount(){
 
 goToHeadQuarters = (e) => {
   e.preventDefault()
-let targetUser = this.state.users.find((user)=>{
-  return user.name === this.state.username
-})
-  this.props.sendUserToStore(targetUser.id)
-  this.props.history.push(`/headquarters/${targetUser.id}`)
+
+  let targetUser = this.state.users.find((user)=>{
+    return user.name === this.state.username
+  })
+
+  if(targetUser){this.props.sendUserToStore(targetUser.id)
+    this.props.history.push(`/headquarters/${targetUser.id}`)}
+  else if (this.state.username === 'Team Leader'){
+    this.props.sendAllUsersToStore(this.state.users)
+    this.props.history.push('/TeamLeader')
+  }
+    
+  else { alert('this user does not exist, please create a new User')
+    }
 }
 
 handleOnChange = (e) => {
@@ -49,23 +58,23 @@ this.setState({
           <img src={logo} className="App-logo" alt="logo" />
         </header>
         <div className='ui container'>
-        <form onSubmit={(e)=>{
+            <form onSubmit={(e)=>{
 
-          // ClientAdapter.getClients().then(res=>props.fetchClients(res))
-          this.goToHeadQuarters(e)}}>
-        <div>
-          <input type="text" name="username" placeholder="Username" onChange={(e)=>{this.handleOnChange(e)}}value={this.state.username}/>
-          <label ></label>
-        </div><br/>
-       {/* <div>
-          <input type="password" name="password" placeholder="Password" />
-          <label ></label>
-        </div>*/}
-        <br/>
-        <button type="submit" className = 'ui primary button'
-        > Login </button>
-        </form>
-</div>
+              // ClientAdapter.getClients().then(res=>props.fetchClients(res))
+              this.goToHeadQuarters(e)}}>
+            <div>
+              <input type="text" name="username" placeholder="Username" onChange={(e)=>{this.handleOnChange(e)}}value={this.state.username}/>
+              <label ></label>
+            </div><br/>
+           {/* <div>
+              <input type="password" name="password" placeholder="Password" />
+              <label ></label>
+            </div>*/}
+            <br/>
+            <button type="submit" className = 'ui primary button'
+            > Login </button>
+            </form>
+    </div>
       </div>
         </div>
     );
@@ -78,7 +87,10 @@ function mapDispatchToProps(dispatch){
     sendUserToStore: (clientId) =>{
       // console.log('sending User... to Store!')
   dispatch({type:'SELECT_USER', payload: clientId})
-    }
+    },
+   sendAllUsersToStore: (users) => {
+  dispatch({type:'SET_USERS', payload: users})
+   } 
   } 
 }
 

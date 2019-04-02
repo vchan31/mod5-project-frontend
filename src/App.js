@@ -6,6 +6,7 @@ import HeadQuarters from './Containers/HeadQuarters'
 import './App.css';
 import { connect } from 'react-redux'
 import Metrics from './Containers/Metrics'
+import TeamLeader from'./Containers/TeamLeader'
 
 
 class App extends Component {
@@ -38,7 +39,7 @@ class App extends Component {
               />
             <Route path="/headquarters/:id" render={(routerProps)=><HeadQuarters {...routerProps} clients={this.props.clients} 
             />}/>
-
+            <Route exact path='/TeamLeader' component={TeamLeader}/>
             <Route exact path="/" component={Login}/>
             <Route exact path="/metrics/:id" render={(routerProps)=>{return <Metrics {...routerProps}/>}}/>
         </Switch>

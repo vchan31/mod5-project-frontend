@@ -54,6 +54,7 @@ handleSubmit = (e) => {
 		})
 	}).then(res=>res.json()).then(res =>{
 		console.log(res)
+		alert('prequalification submited!')
 		if(res.budget !== null && res.area_of_interest !== null){this.props.prequalDone()}
 	}
 	)

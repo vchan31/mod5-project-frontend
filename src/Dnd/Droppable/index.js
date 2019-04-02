@@ -29,7 +29,7 @@ drop = (e) => {
 	else {
 		this.props.dropOnChange(e.target.id)
 		const data = e.dataTransfer.getData('transfer');
-		console.log(e.target)
+		// console.log(e.target)
 		e.target.appendChild(document.getElementById(data));
 
 	}

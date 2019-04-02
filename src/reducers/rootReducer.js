@@ -3,7 +3,8 @@
 const defaultState = {
 	clients: [], 
 	selectedClient: null,
-	selectedUser: null
+	selectedUser: null,
+	users: []
 }
 
 function reducer(state=defaultState, action){
@@ -22,6 +23,10 @@ function reducer(state=defaultState, action){
 		  // console.log('I hit the select user case! also the payload is:', action.payload)
 		  return {...state, selectedUser: action.payload}
 
+		  case 'SET_USERS':
+		  // console.log('hit the set users in the root reducer!')
+		  return {...state, users: action.payload}
+		  
 		default:
 		  return state 
 	}

@@ -294,7 +294,7 @@ dropOnChange = (drId) => {
 
 
 render() {
-	console.log(this.state.client)
+	// console.log(this.state.client)
 	return (
 <div>
 	{this.state.status2 === 'Negotiations' ? <NegotiationDetails clientInfo={this.state.client}/> : null}		
