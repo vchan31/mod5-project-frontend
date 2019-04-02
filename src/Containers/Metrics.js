@@ -85,15 +85,26 @@ render(){
 	return(
 
 	<div>
-		{this.state.clients.length > 0 ? <h1>Metrics for {this.state.clients[0]['user']['name']}</h1> : 'loading'}<br/>
+		<div className='header1'>
+		{this.state.clients.length > 0 ? <h1>Metrics for {this.state.clients[0]['user']['name']}</h1> : 'loading'}
+		</div>
+		<br/><br/><br/><br/>
+
+		<div className='Client-card'>
 		{this.state.clients.length > 0 ? <div><h2>Your current Transactions:</h2> <br/>{this.mapTransactions()}</div> : 'loading'}
+		</div>
+
 		<br/><br/><br/>
+		<div className='Client-card'>
 		<h2>Estimated Gross GCI: </h2>
 		<h3>{this.changeToCurrencyString(this.state.GCIbeforeSplit)}</h3>
+		</div>
 		<br/>
+		<div className='Client-card'>
 		<h2>After broker split:</h2>
 		{this.state.GCIbeforeSplit != 0 ? <h3>{this.changeToCurrencyString(this.brokerSplit())}</h3> : <h3> $0 </h3>}
-
+</div>
+		<div className='footer'></div>
 	</div>
 
 	)

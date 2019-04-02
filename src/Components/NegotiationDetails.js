@@ -61,6 +61,7 @@ changeToCurrencyString = (number) => {
 
 calculateDebtIncome = () => {
 let income = this.changeToNumber(this.props.clientInfo.annual_income)
+
 let mortgagePayment = this.monthlyMortgagePayment((this.state.purchasePrice*.25),(this.state.interestRate /100 / 12), (this.state.term * 12))
 let maintenance = this.changeToNumber(this.state.monthlyCost)
 
@@ -70,7 +71,7 @@ return (mortgagePayment + maintenance)*12 / income
 
 render (){
 
-// console.log(this.state.monthlyCost)
+console.log(this.props)
 return(
 
 <div>
@@ -95,7 +96,7 @@ interest Rate: 4%
 30 year 
 <br/>
 <br/>
-monthly mortgage payment: ${this.changeToCurrencyString(this.monthlyMortgagePayment((this.state.purchasePrice*.25),(this.state.interestRate/ 100 / 12), (this.state.term * 12)))}
+monthly mortgage payment: ${this.changeToCurrencyString(this.monthlyMortgagePayment((this.state.purchasePrice*.25),(this.state.interestRate/ 100 / 12), (this.state.term * 12)))} (assuming 25% downpayment)
 <br/>
 <br/>
 <p><b>Your Debt to income Ratio: {(this.calculateDebtIncome()*100).toFixed(2) + '%'} </b></p>

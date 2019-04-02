@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import {   Image, Modal } from 'semantic-ui-react'
+import { Image, Modal } from 'semantic-ui-react'
 
 
-class  UpdateClientForm extends Component {
+class UpdateClientForm extends Component {
 
 
 render(){

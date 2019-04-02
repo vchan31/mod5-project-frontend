@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Transactions = props => {
-console.log(props)
+// console.log(props)
 
 
 function changeToCurrencyString (number) {
@@ -16,7 +16,7 @@ return (
 
 	{changeToCurrencyString(parseInt(props.transactions[0]['price']))}</h3> : null}
 
-	{props.transactions[0] && props.transactions[0]['contract'] ? <h3>in contract</h3> : null }
+	{props.transactions[0] && props.transactions[0]['contract'] ? <h3><font color='blue'>in contract</font></h3> : null }
 <br/>
 	</div>
 		)
