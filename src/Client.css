@@ -8,7 +8,7 @@
   /*background-color: lightgrey;*/
   text-align: center;
   border: 25px solid;
-  border-color: #4ed4fc;
+  border-color: #6fbed6;
   padding: 25px;
   margin: 25px;
   border-radius: 25px;
@@ -25,7 +25,7 @@
 }*/
 
 .header2 {
-  background-color: #4ed4fc;
+  background-color: #6fbed6;
   padding: 30px;
   text-align: left;
   font-size: 35px;
@@ -34,10 +34,11 @@
 }
 
 .stats {
+
   /*background-color: lightgrey;*/
   /*text-align: center;*/
   border: 10px  grey;
-  padding: 10px;
+  padding: 20px;
   margin: 5px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   font-size: 17px;
@@ -45,4 +46,9 @@
 
 .lowertext {
   font-size: 17px;
+  padding: 20px;
+   margin: 10px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    border: 10px  grey;
+
 }

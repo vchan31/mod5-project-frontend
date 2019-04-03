@@ -299,7 +299,7 @@ render() {
 <div>
 	{this.state.status2 === 'Negotiations' ? <NegotiationDetails clientInfo={this.state.client}/> : null}		
 	<div className='header2'>
-	<h1>Client Page</h1>
+	<h1>CLIENT PAGE</h1>
 	</div>
 	<br/>
 	<div className='stats'>

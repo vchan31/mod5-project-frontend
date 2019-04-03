@@ -7,7 +7,7 @@ import './App.css';
 import { connect } from 'react-redux'
 import Metrics from './Containers/Metrics'
 import TeamLeader from'./Containers/TeamLeader'
-
+import TestLayout from './Containers/TestLayout'
 
 class App extends Component {
 	// state = {
@@ -42,6 +42,7 @@ class App extends Component {
             <Route exact path='/TeamLeader' component={TeamLeader}/>
             <Route exact path="/" component={Login}/>
             <Route exact path="/metrics/:id" render={(routerProps)=>{return <Metrics {...routerProps}/>}}/>
+            <Route exact path='/test' component={TestLayout}/>
         </Switch>
       </Fragment>
     );

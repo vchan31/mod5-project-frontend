@@ -23,7 +23,7 @@ render(){
 	return (
 		<div>
 			<div className='header1'>
-				<h1>Head-Quarters</h1>
+				<h1>HEAD QUARTERS</h1>
 			</div>
 			<CreateClientForm /> 
 			<br/>

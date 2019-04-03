@@ -25,7 +25,10 @@ return (
 		<br/><br/>
 		{this.renderTeamMembers()}
 		
-
+		<br/>
+		<br/><br/>
+		<br/><br/>
+		<br/>
 		<div className='footer'></div>
 
 	</div>

@@ -16,11 +16,16 @@
 .team-member-container {
 	 display: -webkit-flex;
   display: flex;
+  border: 10px solid;
+    border-color: #6fbed6;
+  padding: 30px;
+  border-radius: 15px;
+
 
 }
 
 .headerTeam {
-  background-color: #4ed4fc;
+  background-color: #6fbed6;
   padding: 30px;
   /*text-align: center;*/
   font-size: 35px;
