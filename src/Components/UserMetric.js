@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Transactions from '../Components/Transactions'
 
-class Metrics extends Component {
+class UserMetric extends Component {
 
 	state = {
 		clients: [],
@@ -37,7 +37,7 @@ mapTransactions = () => {
 //this function isolates the clients that belong to this particular user
 filterClientTransactions = (clients) => {
 return clients.filter((client)=>{
-	return client.user.id === parseInt(this.props.match.params.id)
+	return client.user.id === (this.props.userId)
 })
 }
 
@@ -80,31 +80,12 @@ return this.state.GCIbeforeSplit * 0.7
 }
 
 render(){
-// console.log(this.state)
+// console.log(this.props.userId, this.state)
 
 	return(
 
 	<div>
-		<div className='header1'>
-		{this.state.clientTransactions.length > 0 ? <h1>Metrics for {this.state.clientTransactions[0]['user']['name']}</h1> : 'loading'}
-		</div>
-		<br/><br/><br/><br/>
-
-		<div className='Client-card'>
-		{this.state.clients.length > 0 ? <div><h2>Your current Transactions:</h2> <br/>{this.mapTransactions()}</div> : 'loading'}
-		</div>
-
-		<br/><br/><br/>
-		<div className='Client-card'>
-		<h2>Estimated Gross GCI: </h2>
-		<h3>{this.changeToCurrencyString(this.state.GCIbeforeSplit)}</h3>
-		</div>
-		<br/>
-		<div className='Client-card'>
-		<h2>After broker split:</h2>
-		{this.state.GCIbeforeSplit != 0 ? <h3>{this.changeToCurrencyString(this.brokerSplit())}</h3> : <h3> $0 </h3>}
-</div>
-		<div className='footer'></div>
+		<p>GCI: {this.changeToCurrencyString(this.state.GCIbeforeSplit)}</p>
 	</div>
 
 	)
@@ -113,4 +94,4 @@ render(){
 }
 
 
-export default Metrics
+export default UserMetric

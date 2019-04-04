@@ -7,15 +7,25 @@ body {
 
 .App {
   text-align: center;
+  /*overflow: hidden;*/
 }
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
-  height: 30vmin;
+  height: 20vmin;
   pointer-events: none;
 }
 
+.wrapper {
+  text-align: center;
+  margin-left: 700px;
+  margin-top: 100px;
+}
+
 .App-header {
+
+  /*height:200px;*/
+  width: 50%;
   background-color: white;
   min-height: 80vh;
   display: flex;
@@ -24,6 +34,9 @@ body {
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: black;
+   border: 10px solid;
+  border-color: #6fbed6;
+
 }
 
 .Header {
@@ -36,10 +49,44 @@ body {
 
 .LogoImg {
    width: 500px;
-    height: auto;
+  height: auto;
+
 }
 
+.backgroundimage {
+  /* Set rules to fill background */
+  min-height: 100%;
+  min-width: 1024px;
+  
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+  
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1
+}
 
+.base {
+  position: relative;
+
+}
+
+/*.image1 {
+    position: absolute;
+    z-index: 1
+}*/
+
+/*.login {
+  z-index: 1
+}*/
+
+.userform {
+    z-index: 6
+
+}
 
 @keyframes App-logo-spin {
   from {

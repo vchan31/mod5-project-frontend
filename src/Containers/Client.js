@@ -335,8 +335,8 @@ render() {
 <br/>
 <br/>
 		<div className='lowertext'>
-		<p>current suggested action(s): <b>{this.state.client ? this.currentAction() : 'loading'}</b></p>
-		<p>next action: <b>{this.state.client ? this.nextAction() : 'loading'}</b> </p>
+		<h2>Current suggested action(s):</h2> <h3>{this.state.client ? this.currentAction() : 'loading'}</h3>
+		<h2>Next action:</h2> <h3>{this.state.client ? this.nextAction() : 'loading'}</h3>
 		</div>
 <br/>
 <br/>

@@ -5,7 +5,7 @@ import TeamClientCard from './TeamClientCard'
 
 const TeamMember = props => {
 
-console.log(props.clients)
+// console.log(props.clients)
 
 // const TeamCard = styled.div`
 
@@ -15,12 +15,17 @@ console.log(props.clients)
 // `;
 
 function mapClients(){
+
+	if (props.clients.length === 0){return 'This Team Member is currently not working with any clients'
+
+	}
+else{
 	return props.clients.map(function(client){
 		
 		return <div key={client.id} className='teamcard'>
 		<TeamClientCard name={client.name} email={client.email} number={client.number} id={client.id} key={client.id} status={client.status}/>
 		</div>
-	})
+	})}
 	}
 
 

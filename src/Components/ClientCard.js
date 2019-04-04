@@ -28,7 +28,7 @@ else if (status==='Closing'){return 100}
 
 	return (
 <div>
-		<div className='Client-card' onClick={()=>{props.handleSelectClient(id)
+		<div onClick={()=>{props.handleSelectClient(id)
 			props.history.push(`/client/${props.id}`)
 		}
 		}>

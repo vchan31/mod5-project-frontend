@@ -6,7 +6,7 @@
 }
 
 .teamcard {
-	width: 200px;
+	width: auto;
 	height: auto;
 	 float: left;
 	  
@@ -31,4 +31,8 @@
   font-size: 35px;
   color: white;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.UserGCI {
+  text-align: right;
 }

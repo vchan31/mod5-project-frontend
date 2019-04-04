@@ -4,6 +4,7 @@ import '../App.css';
 import { withRouter } from "react-router-dom";
 import { connect } from 'react-redux'
 import CreateNewUserForm from '../Components/createNewUserForm'
+// import wallpaper from '../6873739-manhattan-wallpaper(1).jpg'
 
 class Login extends Component {
 
@@ -48,15 +49,20 @@ this.setState({
     // console.log(this.state)
     return (
         <div>
-        <CreateNewUserForm />
+        
+       
       <div className="App">
-
+      <div className='wrapper'>
         <header className="App-header">
         {/*<h1 className='Header'>DOUGLAS ELLIMAN</h1>*/}
+        <div className='image1'>
         <img className='LogoImg' src='http://localhost:3002/DE_logo.png' alt='shaddup react!'/>
-        <h2>Login</h2>
-          <img src={logo} className="App-logo" alt="logo" />
-        </header>
+        </div>
+                <div className = 'base'>
+                <img className='backgroundimage' src='http://localhost:3002/6873739-manhattan-wallpaper.jpg' alt='shaddup react!'/>
+                </div>
+          {<img src={logo} className="App-logo" alt="logo" />}
+          <br/>
         <div className='ui container'>
             <form onSubmit={(e)=>{
 
@@ -74,7 +80,11 @@ this.setState({
             <button type="submit" className = 'ui primary button'
             > Login </button>
             </form>
+            <br/>
+        <CreateNewUserForm />
     </div>
+        </header>
+        </div>
       </div>
         </div>
     );

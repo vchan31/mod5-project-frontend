@@ -4,18 +4,19 @@ import { connect } from 'react-redux'
 import TeamMember from '../Components/TeamMember'
 import '../TeamLeader.css'
 import TeamMetrics from '../Components/TeamMetrics'
+import UserMetric from '../Components/UserMetric'
 
 class TeamLeader extends Component {
 
 renderTeamMembers = () => {
 	return this.props.users.map(function(teamMember){
-		return <div className='team-member-container' key={teamMember.id}><TeamMember key={teamMember.id} name={teamMember.name} clients={teamMember.clients} id={teamMember.id}/></div>
+		return <div className='team-member-container' key={teamMember.id}><TeamMember key={teamMember.id} name={teamMember.name} clients={teamMember.clients} id={teamMember.id}/><div className ="UserGCI"><UserMetric userId={teamMember.id} /></div></div>
 	})
 }
 
 
 render(){
-console.log(this.props)
+// console.log(this.props)
 
 return (
 	<div>

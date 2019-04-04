@@ -42,7 +42,7 @@ class App extends Component {
             <Route exact path='/TeamLeader' component={TeamLeader}/>
             <Route exact path="/" component={Login}/>
             <Route exact path="/metrics/:id" render={(routerProps)=>{return <Metrics {...routerProps}/>}}/>
-            <Route exact path='/test' component={TestLayout}/>
+            <Route exact path='/Home' component={TestLayout}/>
         </Switch>
       </Fragment>
     );

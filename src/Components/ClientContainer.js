@@ -1,7 +1,7 @@
 import React from 'react';
 import ClientCard from './ClientCard'
 import { connect } from 'react-redux'
-
+import { Grid, Segment } from 'semantic-ui-react'
 
 
 const ClientContainer = props => {
@@ -11,8 +11,8 @@ function mapClients(){
 	if (props.clients.length === 0) {return ' You currently Do not have any active Clients, please add more in the New Client section...'}
 else{
 	return props.clients.map(function(client){
-		return <ClientCard name={client.name} email={client.email} number={client.number} key={client.id} id={client.id} status={client.status}
-		/>
+		return <Grid.Column key={client.id}><Segment><ClientCard name={client.name} email={client.email} number={client.number} key={client.id} id={client.id} status={client.status}
+		/></Segment></Grid.Column>
 	})}
 }
 
@@ -20,8 +20,11 @@ else{
 return (
 		<div className='ui grid'>
 
+			<Grid columns={3} container doubling stackable>
+			
 			{mapClients()}
 
+		</Grid>
 		</div>
 
 	)
