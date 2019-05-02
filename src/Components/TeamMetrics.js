@@ -74,8 +74,8 @@ render(){
 	<Modal.Header><h1>Team GCI Metrics</h1></Modal.Header>
 	<Modal.Content image>
 		<Modal.Description>
-		<h3>Total GCI:</h3><p>{this.changeToCurrencyString(this.brokerSplit())}</p>
-		<h3>GCI for Team Leader:</h3>{this.changeToCurrencyString(this.teamLeaderNet())}
+		<h3>Total GCI:</h3><h1>{this.changeToCurrencyString(this.state.GCIbeforeSplit)}</h1>
+		<h3>GCI for Team Leader:</h3><h1>{this.changeToCurrencyString(this.teamLeaderNet())}</h1>
 		
 		
 			</Modal.Description>

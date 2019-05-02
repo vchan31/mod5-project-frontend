@@ -4,6 +4,7 @@ import CreateClientForm from '../Components/createClientForm'
 import SideBar from '../Components/SideBar'
 import { connect } from 'react-redux'
 import ClientAdapter from '../apis/ClientAdapter'
+import Header from '../Components/Header'
 import '../HeadQuarters.css'
 
 
@@ -24,6 +25,7 @@ render(){
 		<div>
 			<div className='header1'>
 				<h1>HEAD QUARTERS</h1>
+				<Header/>
 			</div>
 			<CreateClientForm /> 
 			<br/>

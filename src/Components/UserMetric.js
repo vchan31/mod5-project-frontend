@@ -85,7 +85,7 @@ render(){
 	return(
 
 	<div>
-		<p>GCI: {this.changeToCurrencyString(this.state.GCIbeforeSplit)}</p>
+		<h2>GCI: {this.changeToCurrencyString(this.state.GCIbeforeSplit)}</h2>
 	</div>
 
 	)

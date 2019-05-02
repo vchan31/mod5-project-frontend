@@ -32,7 +32,7 @@ else if (status==='Closing'){return 100}
 			props.history.push(`/client/${props.id}`)
 		}
 		}>
-		<img className='resize-image' src='http://localhost:3002/img_avatar3.png' alt='stop yelling at me react!'/>
+		<img className='resize-image' src='http://localhost:3001/img_avatar3.png' alt='stop yelling at me react!'/>
 		<div className='container'>
 		<p>{name}</p>
 		<p>{email}</p>

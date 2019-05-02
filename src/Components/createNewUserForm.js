@@ -37,7 +37,7 @@ render(){
 		       <Modal trigger={ <Button className='ui primary button'>New User</Button>}>
 		       <Modal.Header>New User</Modal.Header>
 		       <Modal.Content image>
-		       	<Image wrapped size='medium' src='http://localhost:3002/img_avatar3.png' />
+		       	<Image wrapped size='medium' src='http://localhost:3001/img_avatar3.png' />
 		       	<Modal.Description>
 		        <Header>Please fill out:</Header>
 		        <form className="ui form" onSubmit={(e)=>this.handleSubmit(e)}>

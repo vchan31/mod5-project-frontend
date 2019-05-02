@@ -80,7 +80,7 @@ return(
 
 <Modal.Header>Apartment information</Modal.Header>
 <Modal.Content image>
-<Image wrapped size='medium' src='http://localhost:3002/img_avatar3.png' />
+<Image wrapped size='medium' src='http://localhost:3001/img_avatar3.png' />
  <Modal.Description>
  <Header>Congratulations on finding an Aparment!</Header>
 <p> Lets help you crunch some numbers and start tracking this transaction!</p>
@@ -96,10 +96,10 @@ interest Rate: 4%
 30 year 
 <br/>
 <br/>
-monthly mortgage payment: ${this.changeToCurrencyString(this.monthlyMortgagePayment((this.state.purchasePrice*.25),(this.state.interestRate/ 100 / 12), (this.state.term * 12)))} (assuming 25% downpayment)
+<h2>monthly mortgage payment: ${this.changeToCurrencyString(this.monthlyMortgagePayment((this.state.purchasePrice*.25),(this.state.interestRate/ 100 / 12), (this.state.term * 12)))} (assuming 25% downpayment)</h2>
 <br/>
 <br/>
-<p><b>Your Debt to income Ratio: {(this.calculateDebtIncome()*100).toFixed(2) + '%'} </b></p>
+<h2><b>Your Debt to income Ratio: {(this.calculateDebtIncome()*100).toFixed(2) + '%'} </b></h2>
  </Modal.Description>
 </Modal.Content>
 <br/>

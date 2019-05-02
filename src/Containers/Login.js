@@ -8,7 +8,7 @@ import CreateNewUserForm from '../Components/createNewUserForm'
 
 class Login extends Component {
 
-state= {
+state = {
   username: "",
   users: []
 }
@@ -56,10 +56,10 @@ this.setState({
         <header className="App-header">
         {/*<h1 className='Header'>DOUGLAS ELLIMAN</h1>*/}
         <div className='image1'>
-        <img className='LogoImg' src='http://localhost:3002/DE_logo.png' alt='shaddup react!'/>
+        <img className='LogoImg' src='http://localhost:3001/DE_logo.png' alt='shaddup react!'/>
         </div>
                 <div className = 'base'>
-                <img className='backgroundimage' src='http://localhost:3002/6873739-manhattan-wallpaper.jpg' alt='shaddup react!'/>
+                <img className='backgroundimage' src='http://localhost:3001/6873739-manhattan-wallpaper.jpg' alt='shaddup react!'/>
                 </div>
           {<img src={logo} className="App-logo" alt="logo" />}
           <br/>

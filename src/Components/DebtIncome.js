@@ -12,7 +12,7 @@ return(
 
 <Modal.Header>Client Search Details</Modal.Header>
 <Modal.Content image>
-<Image wrapped size='medium' src='http://localhost:3002/img_avatar3.png' />
+<Image wrapped size='medium' src='http://localhost:3001/img_avatar3.png' />
  <Modal.Description>
 test
 

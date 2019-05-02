@@ -65,7 +65,7 @@ render(){
 
 		    <Modal.Header>Profile Picture</Modal.Header>
 		    <Modal.Content image>
-		      <Image wrapped size='medium' src='http://localhost:3002/img_avatar3.png' />
+		      <Image wrapped size='medium' src='http://localhost:3001/img_avatar3.png' />
 		      <Modal.Description>
 		        <Header>Modal Header</Header>
 		        <p>This is an example of expanded content that will cause the modal's dimmer to scroll</p>
