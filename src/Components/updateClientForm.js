@@ -14,7 +14,7 @@ render(){
 }>
 	<Modal.Header><h1>Edit</h1></Modal.Header>
 	<Modal.Content image>
-		<Image wrapped size='medium' src='http://localhost:3002/img_avatar3.png' />
+		<Image wrapped size='medium' src='http://localhost:3001/img_avatar3.png' />
 		<Modal.Description>
 		<form className="ui form" onSubmit={(e)=>this.props.handleSubmit(e)}>
 		<div className="field">
