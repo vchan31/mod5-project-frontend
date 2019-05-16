@@ -9,7 +9,7 @@ import { Progress } from 'semantic-ui-react'
 import NegotiationDetails from '../Components/NegotiationDetails'
 import '../Client.css'
 import { withRouter } from "react-router-dom";
-
+import Header from '../Components/Header'
 
 
 
@@ -300,6 +300,7 @@ render() {
 	{this.state.status2 === 'Negotiations' ? <NegotiationDetails clientInfo={this.state.client}/> : null}		
 	<div className='header2'>
 	<h1>CLIENT PAGE</h1>
+	<Header/>
 	</div>
 	<br/>
 	<div className='stats'>
