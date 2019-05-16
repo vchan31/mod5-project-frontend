@@ -25,7 +25,7 @@ render(){
 		<div>
 			<div className='header1'>
 				<h1>HEAD QUARTERS</h1>
-			{/*<Header/>*/}
+			<Header/>
 			</div>
 			<CreateClientForm /> 
 			<br/>

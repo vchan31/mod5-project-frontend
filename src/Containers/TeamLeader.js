@@ -5,6 +5,8 @@ import TeamMember from '../Components/TeamMember'
 import '../TeamLeader.css'
 import TeamMetrics from '../Components/TeamMetrics'
 import UserMetric from '../Components/UserMetric'
+import Header from '../Components/Header'
+
 
 class TeamLeader extends Component {
 
@@ -20,7 +22,10 @@ render(){
 
 return (
 	<div>
-		<div className='headerTeam'><h1>Team Leader Page</h1></div>
+		<div className='headerTeam'><h1>Team Leader Page</h1>
+		<Header />
+		</div>
+
 		<div className='topright'><TeamMetrics/></div>
 		<h2>Your Team Members:</h2>
 		<br/><br/>
